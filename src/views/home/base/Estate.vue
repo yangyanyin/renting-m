@@ -1,8 +1,8 @@
 <template>
-  <div class="home-estate w1200px mt80">
-    <Title title="商业地产" :more="titleMore" />
-    <div class="estate-list clearfix">
-      <div class="item left" v-for="(i, k) in 3" :key="k">
+  <div class="home-estate">
+    <Title title="商业地产" />
+    <div class="estate-list">
+      <div class="item" v-for="(i, k) in 3" :key="k">
         <router-link to="/estate/d/sad" class="a-img">
           <img src="https://cms.aicassets.com/images/default/6013780af0d6d.jpeg" alt="商业地产" />
         </router-link>
@@ -20,37 +20,31 @@ export default {
     Title
   },
   data () {
-    return {
-      titleMore: [
-        {
-          text: '查看更多',
-          url: '/estate'
-        }
-      ]
-    }
+    return {}
   }
 }
 </script>
 <style scoped lang="less">
 .estate-list {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-left: 10px;
   .item {
-    width: 386px;
-    margin-right: 20px;
+    display: inline-block;
+    width: 220px;
     text-align: center;
-    &:last-child {
-      margin-right: 0;
-    }
+    margin-right: 10px;
     .a-img {
       display: block;
       border-radius: 5px;
       overflow: hidden;
     }
     h3 {
-      font-size: 20px;
-      padding: 20px 0 10px;
+      font-size: 16px;
+      padding: 15px 0 5px;
     }
     p {
-      font-size: 14px;
+      font-size: 12px;
       color: #7C7C7C;
     }
   }
@@ -58,35 +52,26 @@ export default {
 .view-all {
   position: relative;
   display: block;
-  width: 184px;
-  height: 50px;
-  margin: 40px auto 0;
+  width: 120px;
+  height: 40px;
+  margin: 20px auto 30px;
   background: #FFFFFF;
   border: 1px solid #24A10F;
   color: #24A10F;
   border-radius: 5px;
   text-align: center;
-  line-height: 48px;
-  transition: .3s;
+  line-height: 38px;
   &::after {
     content: '';
     position: absolute;
-    top: 19px;
-    right: 45px;
-    width: 7px;
-    height: 7px;
+    top: 15px;
+    right: 17px;
+    width: 6px;
+    height: 6px;
     border-top: 2px solid #24A10F;
     border-right: 2px solid #24A10F;
     border-radius: 2px;
     transform: rotate(45deg);
-    transition: .3s;
-  }
-  &:hover {
-    color: #fff;
-    background: #24A10F;
-    &:after {
-      border-color: #fff;
-    }
   }
 }
 </style>

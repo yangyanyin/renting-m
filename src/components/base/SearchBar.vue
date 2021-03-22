@@ -11,41 +11,45 @@
 </template>
 <style lang="less" scoped>
 .search-Keyword {
-  position: relative;
+  position: absolute;
+  top: 87px;
+  left: 10%;
   z-index: 9;
-  width: 750px;
-  height: 60px;
+  width: 80%;
+  height: 40px;
   background: #FFFFFF;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   border-radius: 5px;
   overflow: hidden;
+  padding-top: 20px;
   select {
     position: absolute;
     left: 0;
     top: 50%;
-    width: 100px;
+    width: 80px;
     text-align: center;
     text-align-last: center;
     border: none;
-    font-size: 16px;
+    font-size: 13px;
     transform: translateY(-50%);
   }
   input {
     position: absolute;
-    left: 100px;
+    left: 80px;
     top: 0;
-    width: 500px;
-    height: 60px;
-    padding: 20px 10px;
+    padding: 0 10px;
+    width: calc(100% - 74px - 80px);
+    font-size: 12px;
+    height: 40px;
   }
   button {
     position: absolute;
     right: 0;
     top: 0;
-    width: 150px;
-    height: 60px;
+    width: 74px;
+    height: 40px;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     background: #24A10F;
     transition: .3s;
     cursor: pointer;

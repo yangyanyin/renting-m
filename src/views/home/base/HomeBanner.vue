@@ -1,7 +1,10 @@
 <template>
   <div class="banner">
     <img class="b-img" src="../../../assets/image/home-banner.jpg"  alt="新加坡看公寓网" />
-    <SearchBar class="search-banner" />
+    <p>好房直通车，就在新加坡看公寓网</p>
+
+    <SearchBar />
+    
     <div class="integrity">
       <span>
         <img src="../../../assets/image/integrity-icon.png" alt="诚信为本" />
@@ -33,39 +36,43 @@ export default {
 <style lang="less" scoped>
 .banner {
   position: relative;
-  height: 560px;
+  height: 200px;
   overflow: hidden;
+  p {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    left: 0;
+    top: 50px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+  }
   .b-img {
     position: absolute;
     left: 50%;
     width: auto;
-    height: 560px;
+    height: 200px;
     transform: translateX(-50%);
   }
   .integrity {
     position: absolute;
-    bottom: 20px;
+    bottom: 10px;
     left: 0;
     width: 100%;
     text-align: center;
     span {
       display: inline-block;
-      padding: 0 20px;
-      line-height: 20px;
+      padding: 0 8px;
+      line-height: 16px;
+      font-size: 12px;
       color: #fff;
       img {
         float: left;
-        width: 20px;
-        margin-right: 7px;
+        width: 15px;
+        margin-right: 5px;
       }
     }
   }
-}
-.search-banner {
-  position: absolute;
-  z-index: 9;
-  top: 300px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 </style>

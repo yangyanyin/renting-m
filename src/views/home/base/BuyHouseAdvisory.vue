@@ -1,10 +1,12 @@
 <template>
-  <div class="home-advisory mt80">
-    <div class="w1200px">
-      <router-link :to="buyHouseAdvisory.more">立即查看</router-link>
+  <div class="home-advisory">
+    <div class="content">
       <h3 v-html="buyHouseAdvisory.title"></h3>
       <p>{{ buyHouseAdvisory.des }}</p>
+      <router-link :to="buyHouseAdvisory.more">立即查看</router-link>
     </div>
+    
+
   </div>
 </template>
 <script>
@@ -16,38 +18,31 @@ export default {
 </script>
 <style scoped lang="less">
 .home-advisory {
-  background: #FCFCFC;
-  background-size: 598px;
-  .w1200px {
-    height: 240px;
-    padding-top: 90px;
-    background: url('../../../assets/image/house-advisory.png') no-repeat;
-    background-position: 600px 10px;
-    background-size: 580px;
+  padding: 10px;
+  background: #f5f5f5;
+  text-align: center;
+  .content {
+    padding: 35px 30px 25px;
+    border-radius: 5px;
+    background: #fff url('../../../assets/image/house-advisory.png') no-repeat center bottom;
+    background-size: 400px;
   }
   h3 {
-    font-size: 26px;
+    font-size: 16px;
   }
   p {
-    width: 500px;
-    margin-top: 12px;
-    font-size: 12px;
-    line-height: 18px;
+    margin-top: 20px;
+    line-height: 24px;
   }
   a {
-    float: right;
-    width: 184px;
-    height: 50px;
-    line-height: 50px;
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    margin-top: 30px;
+    line-height: 38px;
     color: #fff;
     background: #24A10F;
     border-radius: 5px;
-    text-align: center;
-    transition: .3s;
-    &:hover {
-      background: #198407;
-    }
-
   }
 }
 </style>

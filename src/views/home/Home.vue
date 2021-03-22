@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <!-- 首页头部 -->
-    <HomeHeader />
-
     <!-- Banner -->
     <HomeBanner />
 
@@ -30,7 +27,6 @@
   </div>
 </template>
 <script>
-import HomeHeader from './base/HomeHeader'
 import HomeBanner from './base/HomeBanner'
 import NewHouse from './base/NewHouse'
 import Other from './base/Other'
@@ -40,7 +36,6 @@ import Estate from './base/Estate'
 export default {
   name: 'home',
   components: {
-    HomeHeader,
     HomeBanner,
     NewHouse,
     Other,

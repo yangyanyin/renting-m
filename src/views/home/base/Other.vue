@@ -1,12 +1,10 @@
 <template>
-  <div class="home-other mt80">
-    <div class="w1200px">
-      <div class="content">
-        <router-link v-for="(item, k) in list" :key="k" :to="item.link" @click.native="loanPopup(item.link)">
-          <img :src="item.img" :alt="item.name">
-          {{ item.name }}
-        </router-link>
-      </div>
+  <div class="home-other">
+    <div class="content">
+      <router-link v-for="(item, k) in list" :key="k" :to="item.link" @click.native="loanPopup(item.link)">
+        <img :src="item.img" :alt="item.name">
+        {{ item.name }}
+      </router-link>
     </div>
 
     <div class="home-mortgage" v-if="showMortgage">
@@ -71,19 +69,18 @@ export default {
 </script>
 <style lang="less" scoped>
 .home-other {
-  background: url('../../../assets/image/home-other-bg.jpg') no-repeat top center;
-  height: 240px;
-  padding: 27px 0;
+  padding: 10px;
+  background: #f5f5f5;
   .content {
-    height: 187px;
+    padding: 20px 0;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 4px;
     text-align: center;
     a, span {
       display: inline-block;
-      width: 140px;
-      margin: 0 26px;
-      font-size: 16px;
+      width: 33%;
+      padding: 5px 20px;
+      font-size: 14px;
     }
   }
 }

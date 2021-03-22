@@ -30,6 +30,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .home-header {
+  display: none;
   position: absolute;
   z-index: 9;
   left: 0;

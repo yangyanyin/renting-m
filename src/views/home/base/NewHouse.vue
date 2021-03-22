@@ -1,15 +1,13 @@
 <template>
-  <div class="home-new-house w1200px mt80">
-    <Title title="新加坡最新房产资讯" :more="titleMore" />
-
-    <div class="list clearfix">
-      <router-link :to="'/n/d/' + item.id" v-for="(item, k) in newsList" :key="k">
-        <img :src="item.img" :alt="item.title" />
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
-        <span>{{ item.created_at ? item.created_at.split(' ')[0] : '' }} </span>
-      </router-link>
-    </div>
+  <div class="home-new-house">
+    <Title title="新加坡最新房产资讯" />
+    <router-link class="news-a" :to="'/n/d/' + item.id" v-for="(item, k) in newsList" :key="k">
+      <img :src="item.img" :alt="item.title" />
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+      <span>{{ item.created_at ? item.created_at.split(' ')[0] : '' }} </span>
+    </router-link>
+    <router-link to="/" class="view-all">查看全部</router-link>
   </div>
 </template>
 <script>
@@ -20,19 +18,13 @@ export default {
   },
   data () {
     return {
-      newsList: [],
-      titleMore: [
-        {
-          text: '查看更多',
-          url: '/n/s'
-        }
-      ]
+      newsList: []
     }
   },
   mounted () {
     const params = {
       page: 1,
-      size: 2,
+      size: 1,
       category_id: 1
     }
     this.$httpApi.newsListApi(params).then(res => {
@@ -45,54 +37,66 @@ export default {
 </script>
 <style scoped lang="less">
 .home-new-house {
-  .list {
-    padding: 18px 20px;
-    border: 1px solid #C9C9C9;
-    a {
+  padding: 10px;
+  .news-a {
+    position: relative;
+    display: block;
+    height: 100px;
+    img {
       float: left;
-      position: relative;
-      width: 550px;
-      padding-left: 236px;
-      height: 122px;
-      &:hover {
-        color: #24A10F;
-      }
-      &:last-child {
-        margin-left: 50px;
-      }
-      img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 216px;
-        height: 122px;
-      }
-      h3 {
-        padding: 5px 0 10px;
-        font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        transition: .3s;
-      }
-      p {
-        height: 54px;
-        font-size: 12px;
-        color: #7C7C7C;
-        line-height: 18px;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        /* autoprefixer: off */
-        -webkit-box-orient: vertical;
-        /* autoprefixer: no */
-      }
-      span {
-        display: block;
-        margin-top: 10px;
-        font-size: 12px;
-        color: #7C7C7C;
-      }
+      width: 140px;
+      height: 100px;
+      margin-right: 13px;
+    }
+    h3 {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: .3s;
+    }
+    p {
+      font-size: 12px;
+      color: #7C7C7C;
+      line-height: 18px;
+      margin: 10px 0;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      /* autoprefixer: off */
+      -webkit-box-orient: vertical;
+      /* autoprefixer: no */
+    }
+    span {
+      display: block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #7C7C7C;
+    }
+  }
+  .view-all {
+    position: relative;
+    display: block;
+    width: 120px;
+    height: 40px;
+    margin: 20px auto 15px;
+    background: #FFFFFF;
+    border: 1px solid #24A10F;
+    color: #24A10F;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 38px;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      right: 17px;
+      width: 6px;
+      height: 6px;
+      border-top: 2px solid #24A10F;
+      border-right: 2px solid #24A10F;
+      border-radius: 2px;
+      transform: rotate(45deg);
     }
   }
 }

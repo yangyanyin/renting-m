@@ -15,3 +15,8 @@ export default {
   }
 }
 </script>
+<style scoped lang="less">
+.layout {
+  padding-top: 50px;
+}
+</style>
