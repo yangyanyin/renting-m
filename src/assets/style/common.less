@@ -1,0 +1,137 @@
+/*
+* import stylesheets
+*/
+
+/*去掉input type=number的默认状态*/
+*{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0); 
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+button,input{
+  -webkit-appearance: none;
+  margin: 0;
+  border:none;
+  outline:none;
+}
+body{
+  width: 100%;
+  min-width: 1220px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #19191D;
+  background-color: #fff;
+  margin: 0;
+  font-weight: 400;
+  font-family: 'font-medium', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-weight: 400;
+  margin:0;
+  padding: 0;
+  color: inherit;
+}
+
+a {
+  color: #444;
+}
+div, img {
+  &:focus {
+    outline: none;
+  }
+}
+
+ul,li,ol{padding: 0;margin: 0;list-style: none;}
+img{
+  display: block;
+  border: none;
+  width: 100%;
+  vertical-align: middle;
+}
+/*初始化select样式*/
+select{
+  border: 1px solid #ccc;
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  outline: none;
+  border-radius:0;
+  background: #fff url('../image/select-icon.png') no-repeat 95% center;
+  background-size: 8px;
+}
+
+select:focus,select:active,select:hover{
+  outline:none;
+}
+
+/* 浮动 */
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+
+/*清除浮动*/
+.clearfix:before,
+.clearfix:after{
+  content: " ";
+  display: table;
+}
+.clearfix:after{
+  clear: both;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.w1200px {
+  display: block;
+  width: 1220px;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.mt80 {
+  margin-top: 80px;
+}
+
+.mt40 {
+  margin-top: 40px;
+}
+
+@font-face {
+  font-family: 'font-medium';
+  src: url('../fonts/DIN-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'font-bold';
+  src: url('../fonts/DIN-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
