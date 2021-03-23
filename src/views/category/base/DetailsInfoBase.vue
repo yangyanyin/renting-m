@@ -33,13 +33,13 @@ export default {
       const data = {
         '户型': [],
         '面积㎡': [],
-        '套数': [],
+        // '套数': [],
         '售价': []
       }
       for (let i = 0; i < types.length; i++) {
         data['户型'].push(types[i].type)
         data['面积㎡'].push(types[i].area)
-        data['套数'].push(types[i].total)
+        // data['套数'].push(types[i].total)
         data['售价'].push(types[i].price)
       }
       return data
@@ -59,18 +59,21 @@ export default {
 <style lang="less" scoped>
 .info-base {
   .price {
-    padding-bottom: 10px;
-    font-size: 40px;
+    margin: 15px 0 5px;
+    padding-bottom: 15px;
+    font-size: 22px;
     color: #BF3F3F;
-    border-bottom: 1px solid #707070;
+    border-bottom: 1px solid #C9C9C9;
     i {
-      font-size: 24px;
-    }
-    a {
       display: inline-block;
       position: relative;
-      top: -4px;
-      margin-left: 20px;
+      top: -1px;
+      margin-left: 5px;
+      font-size: 14px;
+    }
+    a {
+      float: right;
+      margin-top: 5px;
       padding: 0 10px 0 25px;
       line-height: 25px;
       background: #EFF8EF url('../../../assets/image/price-change-icon.png');
@@ -83,8 +86,8 @@ export default {
     }
   }
   p {
-    margin-top: 22px;
-    font-size: 16px;
+    padding-top: 15px;
+    font-size: 14px;
     color: #737373;
     i {
       display: inline-block;
@@ -95,8 +98,8 @@ export default {
       span {
         display: inline-block;
         margin-right: 15px;
-        padding: 0 15px;
-        line-height: 28px;
+        padding: 0 10px;
+        line-height: 24px;
         background: #E12129;
         border-radius: 90px;
         font-size: 12px;
@@ -104,7 +107,7 @@ export default {
       }
       i {
         display: block;
-        margin: 10px 0 0 55px;
+        margin: 10px 0 0 45px;
         font-size: 12px;
         color: #1C1C1C;
       }
@@ -115,7 +118,7 @@ export default {
     border: 1px solid #C9C9C9;
     ul {
       float: left;
-      width: 25%;
+      width: 33.333%;
       text-align: center;
       li {
         line-height: 40px;

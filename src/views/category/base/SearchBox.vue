@@ -1,8 +1,7 @@
 <template>
   <div class="category-search">
-    <div class="search-box w1200px clearfix">
-      <span class="left"><img src="../../../assets/image/integrity-image.png" alt="诚信为本，实力铸造" /></span>
-      <SearchBar class="right" />
+    <div class="search-box">
+      <SearchBar />
     </div>
   </div>
 </template>
@@ -21,11 +20,29 @@ export default {
 <style scoped lang="less">
 .category-search {
   background: #F5F5F5;
-  .left {
-    width: 167px;
-  }
-  .search-box {
-    padding: 25px 10px;
+}
+</style>
+<style lang="less">
+.search-box {
+  padding: 12px 10px;
+  background: #fff;
+  .search-Keyword {
+    position: relative;
+    height: 32px;
+    border: 1px solid #F5F5F5;
+    border-radius: 5px;
+    overflow: hidden;
+    select {
+      font-size: 12px;
+    }
+    input {
+      height: 30px;
+    }
+    button {
+      top: -1px;
+      height: 32px;
+      line-height: 32px;
+    }
   }
 }
 </style>

@@ -1,30 +1,27 @@
 <!-- 新楼盘 -->
 <template>
   <div class="category">
-    <BreadcrumbList :breadcrumb="breadcrumb" />
     <SearchBox />
 
     <Loading v-if="total <= 0 || pageLoading"/>
     <template v-else>
-      <Filters />
+      <!-- <Filters /> -->
       <ProductList :productData="productData" :total="total" />
     </template>
     <Pagination v-if="total > 10" :total="total" @clickPage="clickPage" />
   </div>
 </template>
 <script>
-import BreadcrumbList from '../../components/base/BreadcrumbList'
 import SearchBox from './base/SearchBox'
-import Filters from './base/Filters'
+// import Filters from './base/Filters'
 import ProductList from './base/ProductList'
 import Pagination from '../../components/base/Pagination'
 import Loading from '../../components/base/Loading'
 export default {
   name: 'category',
   components: {
-    BreadcrumbList,
     SearchBox,
-    Filters,
+    // Filters,
     ProductList,
     Pagination,
     Loading

@@ -3,17 +3,10 @@
     <router-link :to="routerLink + item._id" class="a-img">
       <img :src="item.image" :alt="item.title" />
     </router-link>
-    <router-link :to="routerLink + item._id" tag="h3">{{ item.title }} <i>公寓</i></router-link>
-    <p class="traffic">交通：
-      <i v-for="(name, k) in item.traffic" :key="k">{{ name }}</i>
-    </p>
-    <p class="address">地址：{{ item.addr }}</p>
+    <router-link :to="routerLink + item._id" tag="h3">{{ item.title }}</router-link>
     <p class="type">
-      <i v-for="(item, k) in item.house_types" :key="k">{{ item.type }}</i>
+      <i v-for="(item, k) in item.house_types" :key="k" v-show="k < 3">{{ item.type }} / {{ item.area }}</i>
     </p>
-    <ul class="label" v-if="item.house_tags.length">
-      <li v-for="(name, k) in item.house_tags" :key="k">{{ name }}</li>
-    </ul>
     <div class="price"> {{ item.price }} <i>{{ priceType }}</i></div>
   </div>
 </template>
@@ -45,35 +38,33 @@ export default {
 </script>
 <style scoped lang="less">
 .item {
-  position: relative;
-  height: 200px;
-  margin-top: 20px;
-  padding: 0 0 20px 345px;
-  border-bottom: 1px solid #C9C9C9;
+  padding: 0 11px;
+  margin-top: 15px;
+  height: 113px;
+
   .price {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    font-size: 24px;
+    font-size: 18px;
     color: #BF3F3F;
     i {
       display: inline-block;
-      font-size: 16px;
+      font-size: 12px;
     }
   }
   .a-img {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 320px;
-    height: 180px;
+    float: left;
+    width: 150px;
+    margin-right: 10px;
     overflow: hidden;
+    border-radius: 3px;
   }
   h3 {
-    padding-top: 5px;
-    font-size: 17px;
-    cursor: pointer;
+    font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: no */
     i {
       display: inline-block;
       position: relative;
@@ -89,59 +80,14 @@ export default {
     }
   }
   p {
+    padding: 5px 0;
     font-size: 12px;
-    margin-top: 20px;
+    line-height: 18px;
     i {
       display: inline-block;
-      height: 20px;
-      margin: 0 5px;
-      line-height: 20px;
-    }
-    &.type {
-      margin-top: 13px;
-      i {
-        position: relative;
-        color: #7C7C7C;
-        padding-right: 10px;
-        &:last-child {
-          padding-right: 0;
-          &::after {
-            display: none;
-          }
-        }
-        &:after {
-          content: '';
-          position: absolute;
-          right: 0;
-          top: 5px;
-          width: 1px;
-          height: 10px;
-          background: #7C7C7C;
-        }
-      }
-    }
-    &.traffic {
-      i {
-        padding: 0 10px;
-        color: #fff;
-        background: #E12129;
-        border-radius: 90px;
-      }
+      margin-right: 10px;
+      color: #7C7C7C;
     }
   }
-  ul.label {
-    margin-top: 10px;
-    li {
-      display: inline-block;
-      height: 24px;
-      margin-right: 12px;
-      padding: 0 8px;
-      font-size: 12px;
-      line-height: 24px;
-      color: #7C7C7C;
-      background: #F5F5F5;
-      border-radius: 2px;
-    }
-  } 
 }
 </style>

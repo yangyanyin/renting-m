@@ -15,33 +15,36 @@
 </template>
 <style lang="less" scoped>
 .consultant {
-  margin-top: 40px;
+  margin-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #C9C9C9;
   h3 {
-    font-size: 20px;
+    font-size: 18px;
     padding-bottom: 12px;
   }
   .content {
     position: relative;
-    height: 160px;
-    padding-left: 150px;
+    height: 100px;
+    padding-left: 90px;
     img {
       position: absolute;
       left: 0;
       top: 0;
-      width: 120px;
-      height: 160px;
+      width: 75px;
+      height: 100px;
     }
     strong {
-      font-size: 18px;
+      font-size: 14px;
       span {
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 15px;
         padding: 0 8px;
-        line-height: 25px;
+        line-height: 22px;
         background: #FDF5EA;
         border-radius: 2px;
         color: #F7B964;
         font-size: 12px;
+        font-weight: normal;
       }
     }
     p {
@@ -50,17 +53,19 @@
       line-height: 18px;
       &.tel {
         padding: 8px 0 11px;
-        font-size: 22px;
+        font-size: 18px;
         color: #BF3F3F;
       }
     }
     ul {
-      padding-top: 20px;
+      position: absolute;
+      right: 0;
+      top: 0;
       li {
         display: inline-block;
-        width: 30px;
-        height: 30px;
-        margin-right: 14px;
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
         background: #46BB36;
         border-radius: 100%;
       }

@@ -14,9 +14,9 @@ export default {
 <style lang="less" scoped>
 .introduction {
   p {
-    margin-top: 27px;
+    margin-top: 15px;
     line-height: 24px;
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 </style>

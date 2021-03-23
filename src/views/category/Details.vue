@@ -1,38 +1,27 @@
 <template>
   <div class="details">
-    <BreadcrumbList :breadcrumb="breadcrumb" v-if="breadcrumb.length > 0" />
-    <SearchBox />
-
     <Loading v-if="!proTitle"/>
-    <div v-else class="content clearfix w1200px mt80">
-      
-      <div class="name">
+    <div v-else class="content">
+      <DetailsViewImg :imagesArr="proBigImages" v-if="proBigImages" />
+       <div class="name">
+        <i v-for="(name, k) in titleTags" :key="k">{{ name }}</i>
         <h3>{{ proTitle }}</h3>
         <span v-for="(name, k) in houseTags" :key="k">{{ name }}</span>
       </div>
-      <div class="left">
-        <DetailsViewImg :imagesArr="proBigImages" v-if="proBigImages" />
-        <DetalsIntroduction :introduction="introduction" />
-        <DetailsPhoto :photoAll="photoAll" />
-        <DetailsDetailed :projectDetails="projectDetails" />
-        <DetailsMortgage />
-        <DetailsUnitType :houseTypes="houseTypes" />
-      </div>
-      <div class="right">
-        <DetailsInfoBase :infoBase="infoBase" />
-        <DetailsRecommend />
-      </div>
+      <DetailsInfoBase :infoBase="infoBase" />
+      <DetalsIntroduction :introduction="introduction" />
+      <DetailsPhoto :photoAll="photoAll" />
+      <DetailsDetailed :projectDetails="projectDetails" />
+      <DetailsUnitType :houseTypes="houseTypes" />
+      <BaiduMap v-show="flahs" :addr="infoBase.addr" />
+      <DetailsRecommend />
     </div>
-    <BaiduMap class="content w1200px mt80" :addr="infoBase.addr" />
   </div>
 </template>
 <script>
-import BreadcrumbList from '../../components/base/BreadcrumbList'
-import SearchBox from './base/SearchBox'
 import DetailsViewImg from '../../components/details/DetailsViewImg'
 import DetalsIntroduction from '../../components/details/DetalsIntroduction'
 import DetailsPhoto from './base/DetailsPhoto'
-import DetailsMortgage from './base/DetailsMortgage'
 import DetailsDetailed from './base/DetailsDetailed'
 import DetailsUnitType from './base/DetailsUnitType'
 import DetailsInfoBase from './base/DetailsInfoBase'
@@ -43,11 +32,8 @@ import Loading from '../../components/base/Loading'
 export default {
   name: 'category-detail',
   components: {
-    BreadcrumbList,
-    SearchBox,
     DetailsViewImg,
     DetailsPhoto,
-    DetailsMortgage,
     DetailsDetailed,
     DetailsUnitType,
     DetalsIntroduction,
@@ -65,7 +51,8 @@ export default {
       photoAll: {},       // 房源相册
       projectDetails: {}, // 项目详情
       houseTypes: '',     // 户型
-      houseTags: []       // 楼盘标签
+      houseTags: [],      // 楼盘标签
+      titleTags: []       // 标题标签
     }
   },
   computed: {
@@ -108,6 +95,7 @@ export default {
         this.introduction = detailInfo.description
         this.houseTypes = detailInfo.house_types
         this.houseTags = detailInfo.house_tags
+        this.titleTags = detailInfo.title_tags
         this.infoBase = {
           location: detailInfo.location,
           area: detailInfo.area,
@@ -144,11 +132,25 @@ export default {
 </script>
 <style lang="less" scoped>
 .details {
+  .content {
+    padding: 0 15px;
+  }
   .name {
-    margin-bottom: 15px;
+    margin-top: 10px;
+    i {
+      display: inline-block;
+      padding: 2px 10px;
+      line-height: 25px;
+      margin-right: 10px;
+      background: #24A10F;
+      border-radius: 2px;
+      text-align: center;
+      color: #fff;
+      font-size: 12px;
+    }
     h3 {
-      padding-bottom: 20px;
-      font-size: 28px;
+      margin: 15px 0;
+      font-size: 18px;
     }
     span {
       display: inline-block;
@@ -162,12 +164,6 @@ export default {
       font-size: 12px;
     }
   }
-  .left {
-    width: 710px;
-  }
-  .right {
-    width: 444px;
-  }
 }
 </style>
 <style lang="less">
@@ -175,7 +171,8 @@ export default {
   .other-t {
     margin-top: 30px;
     padding-bottom: 8px;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: bold;
     border-bottom: 3px solid #24A10F;
   }
 }

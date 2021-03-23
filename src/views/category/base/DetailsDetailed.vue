@@ -27,21 +27,17 @@ export default {
 .detailed {
   ul {
     li {
-      float: left;
-      width: 50%;
       margin-top: 25px;
       &:last-child {
         width: 100%;
         div {
-          display: inline-block;
-          width: calc(100% - 130px);
+          padding-top: 30px;
         }
         span {
           display: inline-block;
           position: relative;
           padding: 0 20px;
           margin-bottom: 10px;
-          color: #6f6f6f;
           &::before {
             content: '';
             position: absolute;
@@ -69,8 +65,8 @@ export default {
       }
       i {
         float: left;
-        width: 130px;
-        padding-right: 40px;
+        width: 80px;
+        font-size: 12px;
         color: #6f6f6f;
       }
     }

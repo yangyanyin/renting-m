@@ -17,22 +17,21 @@ export default {
 <style lang="less" scoped>
 .item {
   position: relative;
-  height: 136px;
-  margin-top: 22px;
-  padding: 0 0 22px 225px;
+  height: 120px;
+  margin-top: 20px;
+  padding: 0 130px 18px 0;
   border-bottom: 1px solid #C9C9C9;
   img {
     position: absolute;
-    left: 0;
+    right: 0;
     top: 0;
-    width: 205px;
-    height: 116px;
+    width: 114px;
+    height: 64px;
   }
   h3 {
-    padding-top: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    font-size: 14px;
     overflow: hidden;
+    font-weight: bold;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     /* autoprefixer: off */
@@ -41,7 +40,7 @@ export default {
   }
   p {
     font-size: 12px;
-    margin-top: 10px;
+    margin-top: 5px;
     line-height: 20px;
     overflow: hidden;
     display: -webkit-box;
@@ -52,8 +51,9 @@ export default {
   }
   span {
     display: block;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #7C7C7C;
+    font-size: 12px;
   }
   a {
     position: absolute;

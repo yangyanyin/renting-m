@@ -11,17 +11,6 @@
 </template>
 <style lang="less" scoped>
 .search-Keyword {
-  position: absolute;
-  top: 87px;
-  left: 10%;
-  z-index: 9;
-  width: 80%;
-  height: 40px;
-  background: #FFFFFF;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  border-radius: 5px;
-  overflow: hidden;
-  padding-top: 20px;
   select {
     position: absolute;
     left: 0;

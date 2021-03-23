@@ -3,11 +3,19 @@
     <h3 class="other-t">房源相册</h3>
     <div class="list">
       <strong>效果图</strong>
-      <HousePhoto @viewBigImg="viewBigImg" :imagesArr="photoAll.effect_picture" />
+      <div class="image-all">
+        <img v-for="(img, k) in photoAll.effect_picture" :key="k" :src="img" @click="viewBigImg(img)" />
+      </div>
+
       <strong>样板间</strong>
-      <HousePhoto @viewBigImg="viewBigImg" :imagesArr="photoAll.sample_room"/>
+      <div class="image-all">
+        <img v-for="(img, k) in photoAll.sample_room" :key="k" :src="img" @click="viewBigImg(img)" />
+      </div>
+
       <strong>周边配套</strong>
-      <HousePhoto @viewBigImg="viewBigImg" :imagesArr="photoAll.matching"/>
+      <div class="image-all">
+        <img v-for="(img, k) in photoAll.matching" :key="k" :src="img" @click="viewBigImg(img)" />
+      </div>
     </div>
     <div class="big-img" v-if="bigImgUrl">
       <div class="content">
@@ -18,11 +26,7 @@
   </div>
 </template>
 <script>
-import HousePhoto from '../../../components/base/HousePhoto'
 export default {
-  components: {
-    HousePhoto
-  },
   props: {
     photoAll: Object
   },
@@ -44,6 +48,18 @@ export default {
     display: block;
     padding: 30px 0 10px;
     font-weight: normal;
+  }
+}
+.image-all {
+  white-space: nowrap;
+  overflow: auto;
+  img {
+    display: inline-block;
+    width: 240px;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 .big-img {

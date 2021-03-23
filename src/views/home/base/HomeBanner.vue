@@ -3,7 +3,7 @@
     <img class="b-img" src="../../../assets/image/home-banner.jpg"  alt="新加坡看公寓网" />
     <p>好房直通车，就在新加坡看公寓网</p>
 
-    <SearchBar />
+    <SearchBar class="search-banner" />
     
     <div class="integrity">
       <span>
@@ -74,5 +74,18 @@ export default {
       }
     }
   }
+}
+.search-banner {
+  position: absolute;
+  top: 87px;
+  left: 10%;
+  z-index: 9;
+  width: 80%;
+  height: 40px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
+  border-radius: 5px;
+  overflow: hidden;
+  padding-top: 20px;
 }
 </style>

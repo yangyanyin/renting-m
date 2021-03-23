@@ -114,8 +114,8 @@ export default {
 <style lang="less" scoped>
 .details-side {
   h3 {
-    margin-top: 40px;
-    font-size: 20px;
+    margin-top: 25px;
+    font-size: 18px;
     padding-bottom: 12px;
     i {
       display: block;
@@ -126,40 +126,25 @@ export default {
   }
 
   .recommend {
-    padding: 13px;
-    border: 1px solid #C9C9C9;
+    padding-bottom: 25px;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 1px solid #C9C9C9;
     .item {
-      position: relative;
-      height: 100px;
-      margin-top: 22px;
-      padding-left: 196px;
-      &:hover {
-        .a-img img {
-          transform: scale(1.2);
-        }
-      }
-      &:first-child {
-        margin-top: 0;
-      }
-      .a-img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 178px;
-        height: 100px;
-        overflow: hidden;
-        img {
-          transition: .3s;
-        }
-      }
+      display: inline-block;
+      width: 150px;
+      margin-right: 15px;
       strong {
-        font-weight: normal;
-        line-height: 22px;
-        cursor: pointer;
-        transition: .3s;
-        &:hover {
-          color: #24A10F;
-        }
+        display: block;
+        padding-top: 10px;
+        white-space: normal;
+        line-height: 18px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* autoprefixer: off */
+        -webkit-box-orient: vertical;
+        /* autoprefixer: no */
       }
       p {
         padding: 7px 0;
@@ -167,10 +152,10 @@ export default {
         color: #7C7C7C;
       }
       span {
-        font-size: 20px;
+        font-size: 16px;
         color: #BF3F3F;
         em {
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
@@ -239,7 +224,7 @@ export default {
       display: block;
       width: 100%;
       margin-top: 30px;
-      line-height: 50px;
+      line-height: 40px;
       text-align: center;
       background: #24A10F;
       border-radius: 5px;

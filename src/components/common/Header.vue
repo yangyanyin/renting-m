@@ -9,10 +9,11 @@
       <span></span>
       <span></span>
     </div>
+
     <div class="nav-popup" v-if="showNavPopup">
       <ul class="nav-menu">
         <li v-for="(item, key) in navDate" :key="key">
-          <router-link :to="item.url">
+          <router-link :to="item.url" @click.native="navItemClick">
             {{item.name}}
           </router-link>
         </li>
@@ -43,8 +44,13 @@ export default {
       } else {
         ModalHelper.beforeClose()
       }
+    },
+    navItemClick () {
+      this.showNavPopup = false
+      ModalHelper.beforeClose()
     }
-  }
+  },
+  
 }
 </script>
 <style scoped lang="less">
@@ -55,6 +61,7 @@ header {
   z-index: 999;
   height: 50px;
   width: 100%;
+  max-width: 767px;
   background: #24A10F;
   .logo {
     margin: 12px 0 0 15px;

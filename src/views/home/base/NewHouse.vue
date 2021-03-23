@@ -7,7 +7,7 @@
       <p>{{ item.description }}</p>
       <span>{{ item.created_at ? item.created_at.split(' ')[0] : '' }} </span>
     </router-link>
-    <router-link to="/" class="view-all">查看全部</router-link>
+    <router-link to="/n/s" class="view-all">查看全部</router-link>
   </div>
 </template>
 <script>
@@ -53,7 +53,6 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      transition: .3s;
     }
     p {
       font-size: 12px;

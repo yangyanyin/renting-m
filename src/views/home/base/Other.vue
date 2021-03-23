@@ -28,7 +28,7 @@ export default {
         {
           name: '买房必看',
           img: require('../../../assets/image/home-other-icon1.png'),
-          link: '/n/d/13'
+          link: '/n/must-see'
         },
         {
           name: '买房贷款',
@@ -38,12 +38,12 @@ export default {
         {
           name: '产权交易',
           img: require('../../../assets/image/home-other-icon3.png'),
-          link: '/n/d/15'
+          link: '/n/property'
         },
         {
           name: '常见问题',
           img: require('../../../assets/image/home-other-icon4.png'),
-          link: '/n/d/16'
+          link: '/n/faq'
         },
         {
           name: '业主委托',
@@ -53,7 +53,7 @@ export default {
         {
           name: '购房指南',
           img: require('../../../assets/image/home-other-icon6.png'),
-          link: '/n/d/18'
+          link: '/n/guide'
         }
       ]
     }

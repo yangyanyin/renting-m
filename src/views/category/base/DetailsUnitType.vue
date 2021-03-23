@@ -10,6 +10,7 @@
       <p>参考总价：<i> {{ item.price }} </i>/套</p>
       <span>{{ item.area }}</span>
     </div>
+    <button>房贷计算</button>
     <strong>免责声明</strong>
     <em>页面所载楼盘内容及数据仅供用户参考和借鉴，最终以开发商实际公示为准，如楼盘信息有误或其他疑义，可进行纠错。</em>
   </div>
@@ -25,15 +26,15 @@ export default {
 .unit-type {
   .item {
     position: relative;
-    height: 126px;
+    height: 75px;
     margin-top: 20px;
-    padding-left: 253px;
+    padding-left: 130px;
     .a-img {
       position: absolute;
       left: 0;
       top: 0;
-      width: 225px;
-      height: 126px;
+      width: 120px;
+      height: 75px;
       overflow: hidden;
     }
     h3 {
@@ -52,14 +53,23 @@ export default {
     span {
       position: absolute;
       right: 0;
-      top: 25px;
-      font-size: 20px;
+      top: 10px;
+      font-size: 18px;
       color: #BF3F3F;
     }
   }
+  button {
+    width: 100%;
+    height: 46px;
+    margin-top: 30px;
+    line-height: 46px;
+    background: #24A10F;
+    color: #fff;
+    border-radius: 5px;
+  }
   strong {
     display: block;
-    margin-top: 40px;
+    margin-top: 30px;
     padding-left: 20px;
     font-weight: bold;
     color: #7C7C7C;
