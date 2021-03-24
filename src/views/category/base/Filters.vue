@@ -2,54 +2,85 @@
   <div class="filter">
     <div class="tips" v-if="showTips"><p>全岛各地段海量租赁房源，系统自动于每日上午9时采集、更新房源信息，故无法做到全部房源数据实时同步展示。如有需求，请联系我们专业的房产顾问，最快24小时内安排现场看房!</p></div>
     
-    <div class="item">
-      <span class="t">地区</span>
-      <span>全部</span>
-      <span>东部</span>
-      <span>西部</span>
-      <span>市区</span>
-      <span>中部</span>
-      <span>南部</span>
-      <span>北部</span>
-      <span>东南部</span>
-      <span>其他地区</span>
+    <div class="type">
+      <span @click="typeClick('地区')">地区</span>
+      <span @click="typeClick('面积')">面积</span>
+      <span @click="typeClick('价格')">价格</span>
+      <span @click="typeClick('户型')">户型</span>
     </div>
-    <div class="item">
-      <span class="t">户型</span>
-      <span>全部</span>
-      <span>studio</span>
-      <span>1卧室</span>
-      <span>2卧室</span>
-      <span>3卧室</span>
-      <span>4卧室</span>
-      <span>独栋洋房</span>
-      <span>半独立洋房</span>
-    </div>
-
-    <div class="sort">
-      <span class="active">默认排序</span>
-      <span>按价格</span>
-      <span>按面积</span>
+    <div class="down-list">
+      <div class="content">
+        <span v-for="(item, k) in downData[typeTitle]" :key="k">{{ item }}</span>
+        <div class="btn">
+          <i>清除条件</i>
+          <button>确定</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      downData: {
+        '地区': ['全部', '中部', '东部', '西部'],
+        '面积': ['11㎡', '22㎡', '33㎡', '44㎡'],
+        '价格': ['$12.32', '$12.32', '$12.32', '$12.32'],
+        '户型': ['1卧室', '2卧室', '3卧室', '4卧室']
+      },
+      typeTitle: ''
+    }
+  },
   computed: {
     showTips () {
       return this.$route.params.name === 'renting'
     }
   },
   methods: {
-    filterClick () {
-      
+    typeClick (type) {
+      this.typeTitle = type
     }
   }
 }
 </script>
 <style scoped lang="less">
 .filter {
-  padding: 40px 10px 0;
+  padding: 10px 10px 0;
+  border-bottom: 1px solid #F5F5F5;
+  .type {
+    span {
+      display: inline-block;
+      position: relative;
+      width: 25%;
+      padding: 10px 0;
+      text-align: center;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 18px;
+        right: 15px;
+        width: 0;
+        height: 0;
+        border: 5px solid;
+        border-color: transparent transparent#E2E2E2;
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .down-list {
+    position: fixed;
+    z-index: 9;
+    top: 157px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    .content {
+      height: 400px;
+      background: #fff;
+    }
+  }
   .tips {
     text-align: center;
     margin-bottom: 60px;
@@ -70,42 +101,6 @@ export default {
         color: #fff;
         line-height: 14px;
         background: #F7B964;
-      }
-    }
-  }
-  .item {
-    span {
-      display: inline-block;
-      margin: 0 30px 18px 0;
-      cursor: pointer;
-      &:hover {
-        color: #24A10F;
-      }
-      &.t {
-        margin-right: 60px;
-        font-weight: bold;
-        &:hover {
-          color: #19191D;
-        }
-      }
-    }
-  }
-  .sort {
-    height: 36px;
-    margin-top: 70px;
-    border-bottom: 3px solid #24A10F;
-    span {
-      display: inline-block;
-      width: 84px;
-      line-height: 33px;
-      text-align: center;
-      cursor: pointer;
-      &:hover {
-        color: #24A10F;
-      }
-      &.active {
-        background: #24A10F;
-        color: #fff;
       }
     }
   }

@@ -4,6 +4,7 @@ import router from './router'
 import axios from './api'
 Vue.config.productionTip = false
 Vue.prototype.$httpApi = axios
+import '@/config/infiniteScroll'
 
 new Vue({
   router,

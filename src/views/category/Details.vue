@@ -13,7 +13,7 @@
       <DetailsPhoto :photoAll="photoAll" />
       <DetailsDetailed :projectDetails="projectDetails" />
       <DetailsUnitType :houseTypes="houseTypes" />
-      <BaiduMap v-show="flahs" :addr="infoBase.addr" />
+      <BaiduMap v-show="false" :addr="infoBase.addr" />
       <DetailsRecommend />
     </div>
   </div>

@@ -1,29 +1,27 @@
 <!-- 新楼盘 -->
 <template>
-  <div class="category">
+  <div class="category" v-pat-infinite-scroll="getProductList" pat-infinite-scroll-distance="450">
     <SearchBox />
 
-    <Loading v-if="total <= 0 || pageLoading"/>
+    <Loading v-if="total <= 0"/>
     <template v-else>
-      <!-- <Filters /> -->
+      <Filters />
       <ProductList :productData="productData" :total="total" />
+      <Loading v-if="pageLoading" />
     </template>
-    <Pagination v-if="total > 10" :total="total" @clickPage="clickPage" />
   </div>
 </template>
 <script>
 import SearchBox from './base/SearchBox'
-// import Filters from './base/Filters'
+import Filters from './base/Filters'
 import ProductList from './base/ProductList'
-import Pagination from '../../components/base/Pagination'
 import Loading from '../../components/base/Loading'
 export default {
   name: 'category',
   components: {
     SearchBox,
-    // Filters,
+    Filters,
     ProductList,
-    Pagination,
     Loading
   },
   data () {
@@ -31,7 +29,8 @@ export default {
       productData: [],
       total: 0,
       page: 1,
-      pageLoading: false
+      pageLoading: false,
+      onMore: true
     }
   },
   computed: {
@@ -56,36 +55,32 @@ export default {
     }
   },
   methods: {
-    clickPage (page) {
-      page = page + 1
-      const path = this.$route.path
-      this.$router.push({
-        path: path,
-        query: {
-          page: page
+    getProductList () {
+      if (this.onMore) {
+        this.onMore = false
+        const params = {
+          page: this.page,
+          size: 10,
+          api_url: this.breadcrumb[0].api
         }
-      })
-
-      this.getProductList(page)
-    },
-    getProductList (page) {
-      this.page = page
-      const params = {
-        page: this.page,
-        size: 10,
-        api_url: this.breadcrumb[0].api
+        this.pageLoading = true
+        this.$httpApi.categoryListApi(params).then(res => {
+          if (res.code === 200) {
+            const data = res.data.new_houses || res.data.second_hand_houses
+            this.page++
+            this.productData = this.productData.concat(data)
+            this.total = res.data.total
+            this.pageLoading = false
+            if (data.length === 10) {
+              this.onMore = true
+            }
+          }
+        })
       }
-      this.pageLoading = true
-      this.$httpApi.categoryListApi(params).then(res => {
-        this.productData = res.data.new_houses || res.data.second_hand_houses
-        this.total = res.data.total
-        this.pageLoading = false
-      })
     }
   },
   mounted () {
-    const p = this.$route.query.page || 1
-    this.getProductList(p)
+    this.getProductList()
   }
 }
 </script>

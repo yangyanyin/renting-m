@@ -57,10 +57,11 @@ export default {
   }
   .integrity {
     position: absolute;
-    bottom: 10px;
+    bottom: 8px;
     left: 0;
     width: 100%;
     text-align: center;
+    transform: scale(.8);
     span {
       display: inline-block;
       padding: 0 8px;

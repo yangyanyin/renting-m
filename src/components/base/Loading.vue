@@ -9,7 +9,7 @@
 </template>
 <style scoped lang="less">
 .ball-pulse {
-  padding: 200px 0;
+  padding: 100px 0;
   text-align: center;
 }
 .ball-pulse > div:nth-child(1) {

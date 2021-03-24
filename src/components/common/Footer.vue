@@ -1,31 +1,38 @@
 <template>
   <footer>
-    <MessagePlate />
-    <div class="footer-content">
-      <p>新加坡看公寓网是新加坡最全的中文类房产新楼盘信息网，每日更新汇聚全岛最实时的房产信息，开发商直接销售团队，金牌团队专注服务中国客户，服务数百精英满意置业新加坡，是海外华人在新置业的必看网站。</p>
-      <ul>
-        <li><img src="../../assets/image/whats-icon.png"></li>
-        <li><img src="../../assets/image/weibo-icon.png"></li>
-        <li><img src="../../assets/image/fb-icon.png"></li>
-        <li><img src="../../assets/image/in-icon.png"></li>
-        <li><img src="../../assets/image/wechat-icon.png"></li>
-      </ul>
-      <div class="ewm">
-        <span>
-          <i><img src="https://waterlandcap.com/img/WeChat2.9f2b49a2.png" alt="扫码关注公众号" /></i>
-          扫码关注公众号
-        </span>
-        <span>
-          <i><img src="https://waterlandcap.com/img/WeChat2.9f2b49a2.png" alt="扫码关注公众号" /></i>
-          新加坡吴洲房产
-        </span>
+    <template v-if="isHome">
+      <MessagePlate />
+      <div class="footer-content">
+        <p>新加坡看公寓网是新加坡最全的中文类房产新楼盘信息网，每日更新汇聚全岛最实时的房产信息，开发商直接销售团队，金牌团队专注服务中国客户，服务数百精英满意置业新加坡，是海外华人在新置业的必看网站。</p>
+        <ul>
+          <li><img src="../../assets/image/whats-icon.png"></li>
+          <li><img src="../../assets/image/weibo-icon.png"></li>
+          <li><img src="../../assets/image/fb-icon.png"></li>
+          <li><img src="../../assets/image/in-icon.png"></li>
+          <li><img src="../../assets/image/wechat-icon.png"></li>
+        </ul>
+        <div class="ewm">
+          <span>
+            <i><img src="https://waterlandcap.com/img/WeChat2.9f2b49a2.png" alt="扫码关注公众号" /></i>
+            扫码关注公众号
+          </span>
+          <span>
+            <i><img src="https://waterlandcap.com/img/WeChat2.9f2b49a2.png" alt="扫码关注公众号" /></i>
+            新加坡吴洲房产
+          </span>
+        </div>
+        <div class="hotline">
+          <i>服务热线</i> +65 88 139 139
+        </div>
+        <span class="copyright">© 2021 新加坡看公寓网 All Rights Reserved.</span>
       </div>
-      <div class="hotline">
+    </template>
+    <template v-else>
+      <div class="other-hotline">
         <i>服务热线</i> +65 88 139 139
       </div>
-      <span class="copyright">© 2021 新加坡看公寓网 All Rights Reserved.</span>
-    </div>
-
+      <span class="other-copyright">© 2021 新加坡看公寓网 All Rights Reserved.</span>
+    </template> 
     <ReturnTop />
   </footer>
 </template>
@@ -36,6 +43,11 @@ export default {
   components: {
     MessagePlate,
     ReturnTop
+  },
+  computed: {
+    isHome () {
+      return this.$route.name === 'home'
+    }
   }
 }
 </script>
@@ -100,4 +112,26 @@ export default {
     }
   }
 }
+
+.other-hotline {
+  padding: 40px 0 30px;
+  text-align: center;
+  color: #24A10F;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #F5F5F5;
+  i {
+    font-size: 14px;
+    color: #1C1C1C;
+    font-weight: normal;
+  }
+}
+.other-copyright {
+  display: block;
+  padding: 18px 0;
+  color: #C9C9C9;
+  text-align: center;
+  font-size: 12px;
+}
+
 </style>

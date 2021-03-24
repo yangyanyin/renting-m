@@ -81,7 +81,7 @@ export default {
           name: '购房指南'
         }
       }
-      return id[this.$route.params.name]
+      return id[this.$route.params.name] || {}
     }
   },
   mounted () {

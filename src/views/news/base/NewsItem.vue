@@ -1,11 +1,11 @@
 <template>
-  <div class="item">
+  <router-link :to="'/n/d/' + item.id" class="item">
     <img :src="item.img" :alt="item.title" />
     <router-link :to="'/n/d/' + item.id" tag="h3">{{ item.title }}</router-link>
     <p>{{ item.description }}</p>
     <span>{{ item.created_at ? item.created_at.split(' ')[0] : '' }}</span>
     <router-link :to="'/n/d/' + item.id">查看详情</router-link>
-  </div>
+  </router-link>
 </template>
 <script>
 export default {
@@ -16,6 +16,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .item {
+  display: block;
   position: relative;
   height: 120px;
   margin-top: 20px;
