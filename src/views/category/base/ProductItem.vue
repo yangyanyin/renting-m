@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <router-link :to="routerLink + item._id" class="a-img">
-      <img :src="item.image" :alt="item.title" />
+      <rentImg :url="item.image" :alt="item.title" />
     </router-link>
     <router-link :to="routerLink + item._id" tag="h3">{{ item.title }}</router-link>
     <p class="type">

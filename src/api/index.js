@@ -1,5 +1,12 @@
 import axios from './axios'
 
+// 首页
+const indexApi = (params) => axios({
+  url: `/v1/index`,
+  method: 'get',
+  params: params
+})
+
 // 房屋信息列表
 const categoryListApi = (params) => axios({
   url: `/v1/${params.api_url}/list`,
@@ -49,14 +56,46 @@ const recommendNewsApi = (params) => axios({
   params: params
 })
 
+// 商业办公大楼
+const buildingApi = (params) => axios({
+  url: '/v1/office/list',
+  method: 'get',
+  params: params
+})
+
+// 保留性店屋
+const shophouseApi = (params) => axios({
+  url: '/v1/retention/list',
+  method: 'get',
+  params: params
+})
+
+// 地产详情
+const estateDetailsApi = (params) => axios({
+  url: '/v1/business/' + params.id,
+  method: 'get',
+  params: params
+})
+
+// 业主留言
+const messageApi = (params) => axios({
+  url: '/v1/contact',
+  method: 'post',
+  params: params
+})
 
 
 export default {
+  indexApi,
   categoryListApi,
   productDetailApi,
   categoryRecommendApi,
   newsListApi,
   newsDetailsApi,
   hotNewsListApi,
-  recommendNewsApi
+  recommendNewsApi,
+  buildingApi,
+  shophouseApi,
+  estateDetailsApi,
+  messageApi
 }

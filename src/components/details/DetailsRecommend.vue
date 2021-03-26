@@ -4,10 +4,10 @@
     <div class="recommend">
       <div class="item" v-for="(item, k) in recommendList" :key="k">
         <router-link :to="recommendType.link + item._id"  class="a-img">
-          <img :src="item.image" :alt="item.title" />
+          <rentImg :url="item.image" :alt="item.title" />
         </router-link>
         <router-link to="/" tag="strong">{{ item.title }}</router-link>
-        <p>2-5室 / 96-116㎡</p>
+        <!-- <p>2-5室 / 96-116㎡</p> -->
         <span>{{ item.price }} <em>{{ recommendType.unit }}</em></span>
       </div>
     </div>

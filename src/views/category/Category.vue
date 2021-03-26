@@ -5,7 +5,7 @@
 
     <Loading v-if="total <= 0"/>
     <template v-else>
-      <Filters />
+      <Filters v-if="flase" />
       <ProductList :productData="productData" :total="total" />
       <Loading v-if="pageLoading" />
     </template>
