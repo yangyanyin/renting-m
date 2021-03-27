@@ -1,10 +1,12 @@
 <template>
   <div class="details-images">
     <VueSlickCarousel v-bind="settings">
-      <div class="item" v-for="(item, k) in imagesArr" :key="k">
-        <img :src="item" />
-      </div>
+      <img class="img-object" v-for="(item, k) in imagesArr" :key="k" :src="item" />
     </VueSlickCarousel>
+    <a :href="vrLink" target="_blank" v-if="vrLink">
+      <img src="../../assets/image/vr_icon.gif">
+      VR看房
+    </a>
   </div>
 </template>
 <script>
@@ -16,7 +18,8 @@ export default {
     VueSlickCarousel
   },
   props: {
-    imagesArr: Array
+    imagesArr: Array,
+    vrLink: String
   },
   data () {
     return {
@@ -39,8 +42,47 @@ export default {
 </script>
 <style lang="less">
 .details-images {
+  position: relative;
   margin: 0 -15px;
   overflow: hidden;
+  .slick-slide {
+    > div {
+      height: 210px;
+    }
+  }
+  a {
+    position: absolute;
+    z-index: 9;
+    left: 15px;
+    bottom: 15px;
+    width: 105px;
+    height: 26px;
+    padding-right: 16px;
+    line-height: 26px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+    opacity: .8;
+    transition: .3s;
+    &:after {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      border-right: 1px solid #fff;
+      border-top: 1px solid #fff;
+      transform: rotate(45deg);
+    }
+    img {
+      display: inline-block;
+      width: 36px;
+      height: auto;
+    }
+  }
   .slick-dots {
     display: inline-block !important;
     position: absolute;

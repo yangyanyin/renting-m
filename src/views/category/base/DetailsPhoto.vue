@@ -4,17 +4,23 @@
     <div class="list">
       <strong>效果图</strong>
       <div class="image-all">
-        <img v-for="(img, k) in photoAll.effect_picture" :key="k" :src="img" @click="viewBigImg(img)" />
+        <span v-for="(img, k) in photoAll.effect_picture" :key="k">
+          <img class="img-object" :src="img" @click="viewBigImg(img)" />
+        </span>
       </div>
 
       <strong>样板间</strong>
       <div class="image-all">
-        <img v-for="(img, k) in photoAll.sample_room" :key="k" :src="img" @click="viewBigImg(img)" />
+        <span v-for="(img, k) in photoAll.sample_room" :key="k">
+          <img class="img-object" :src="img" @click="viewBigImg(img)" />
+        </span>
       </div>
 
       <strong>周边配套</strong>
       <div class="image-all">
-        <img v-for="(img, k) in photoAll.matching" :key="k" :src="img" @click="viewBigImg(img)" />
+        <span v-for="(img, k) in photoAll.matching" :key="k">
+          <img class="img-object" :src="img" @click="viewBigImg(img)" />
+        </span>
       </div>
     </div>
     <div class="big-img" v-if="bigImgUrl">
@@ -53,9 +59,10 @@ export default {
 .image-all {
   white-space: nowrap;
   overflow: auto;
-  img {
+  span {
     display: inline-block;
-    width: 240px;
+    width: 230px;
+    height: 125px;
     margin-right: 20px;
     &:last-child {
       margin-right: 0;

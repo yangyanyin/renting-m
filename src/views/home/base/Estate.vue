@@ -4,7 +4,7 @@
     <div class="estate-list clearfix">
       <div class="item" v-for="(item, k) in businessData" :key="k">
         <router-link :to="'/estate/d/' + item._id" class="a-img">
-          <rentImg :url="item.image" :alt="item.title" />
+          <rentImg class="img-object" :url="item.image" :alt="item.title" />
         </router-link>
         <router-link to="/estate/d/sad" tag="h3">{{ item.title }}</router-link>
         <p>{{ item.addr }}</p>
@@ -34,13 +34,14 @@ export default {
   padding-left: 10px;
   .item {
     display: inline-block;
-    width: 220px;
     text-align: center;
     margin-right: 10px;
     .a-img {
       display: block;
       border-radius: 5px;
       overflow: hidden;
+      width: 220px;
+      height: 120px;
     }
     h3 {
       font-size: 16px;

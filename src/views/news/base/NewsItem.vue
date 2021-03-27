@@ -1,6 +1,8 @@
 <template>
   <router-link :to="'/n/d/' + item.id" class="item">
-    <rentImg :url="item.img" :alt="item.title" />
+    <i>
+      <rentImg class="img-object" :url="item.img" :alt="item.title" />
+    </i>
     <router-link :to="'/n/d/' + item.id" tag="h3">{{ item.title }}</router-link>
     <p>{{ item.description }}</p>
     <span>{{ item.created_at ? item.created_at.split(' ')[0] : '' }}</span>
@@ -22,7 +24,7 @@ export default {
   margin-top: 20px;
   padding: 0 130px 18px 0;
   border-bottom: 1px solid #C9C9C9;
-  img {
+  i {
     position: absolute;
     right: 0;
     top: 0;

@@ -2,11 +2,11 @@
   <div class="details">
     <Loading v-if="!proTitle"/>
     <div v-else class="content">
-      <DetailsViewImg :imagesArr="proBigImages" v-if="proBigImages" />
+      <DetailsViewImg :vrLink="vrLink" :imagesArr="proBigImages" v-if="proBigImages" />
        <div class="name">
         <i v-for="(name, k) in titleTags" :key="k">{{ name }}</i>
         <h3>{{ proTitle }}</h3>
-        <span v-for="(name, k) in houseTags" :key="k">{{ name }}</span>
+        <span v-for="(name, k) in houseTags" :key="name + k">{{ name }}</span>
       </div>
       <DetailsInfoBase :infoBase="infoBase" />
       <DetalsIntroduction :introduction="introduction" />
@@ -52,7 +52,9 @@ export default {
       projectDetails: {}, // 项目详情
       houseTypes: '',     // 户型
       houseTags: [],      // 楼盘标签
-      titleTags: []       // 标题标签
+      titleTags: [],      // 标题标签
+      vrLink: ''          // VR 看房链接
+
     }
   },
   computed: {
@@ -96,6 +98,7 @@ export default {
         this.houseTypes = detailInfo.house_types
         this.houseTags = detailInfo.house_tags
         this.titleTags = detailInfo.title_tags
+        this.vrLink = detailInfo.vr_link
         this.infoBase = {
           location: detailInfo.location,
           area: detailInfo.area,

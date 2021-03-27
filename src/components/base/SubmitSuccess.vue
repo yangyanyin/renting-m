@@ -3,7 +3,7 @@
     <div class="content">
       <div class="close" @click="closeSuccess"></div>
       <div class="t">
-        <h3>提交成功</h3>
+        <h3>递交成功</h3>
         <p>请耐心等待，我们稍后将会有工作人员与您取得联系！</p>
       </div>
       <div class="c">
@@ -35,9 +35,8 @@ export default {
   .content {
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 600px;
-    margin-left: -300px;
+    left: 15px;
+    right: 15px;
     background: #fff;
     border-radius: 5px;
     transform: translateY(-50%);
@@ -45,16 +44,10 @@ export default {
     overflow: hidden;
     .close {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 15px;
+      right: 15px;
       width: 30px;
       height: 30px;
-      cursor: pointer;
-      &:hover {
-        &::after,&::before {
-          opacity: 1;
-        }
-      }
       &:after {
         content: '';
         position: absolute;
@@ -81,49 +74,62 @@ export default {
       }
     }
     .t {
-      padding: 60px 0;
+      padding: 30px 0;
       background: #24A10F;
       color: #fff;
       h3 {
+        position: relative;
         display: inline-block;
-        padding-bottom: 15px;
-        font-size: 32px;
+        padding: 0 0 10px 25px;
+        font-size: 24px;
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 5px;
+          width: 8px;
+          height: 18px;
+          border-bottom: 2px solid #fff;
+          border-right: 2px solid #fff;
+          transform: rotate(45deg);
+        }
       }
       p {
-        font-size: 16px;
+        padding: 0 50px;
+        font-size: 14px;
       }
     }
     .c {
       padding-bottom: 40px;
       p {
-        padding: 40px 0 20px;
-        font-size: 18px;
+        padding: 30px 50px 15px;
+        font-size: 14px;
         opacity: .8;
       }
       span {
-        font-size: 18px;
+        font-size: 14px;
         strong {
           position: relative;
           top: 2px;
-          font-size: 22px;
+          margin-left: 10px;
+          padding-left: 30px;
+          font-size: 20px;
           color: #24A10F;
+          background: url('../../assets/image/tel-green.png') no-repeat left center;
+          background-size: 20px;
         }
       }
       button {
         display: block;
-        width: 200px;
-        height: 50px;
-        margin: 50px auto 0;
-        line-height: 50px;
+        width: 180px;
+        height: 46px;
+        margin: 30px auto 0;
+        line-height: 46px;
         color: #fff;
         background: #24A10F;
         border-radius: 5px;
         font-size: 16px;
         transition: .3s;
-        cursor: pointer;
-        &:hover {
-          background: #168603;
-        }
       }
     }
   }

@@ -4,7 +4,7 @@
     <div class="recommend">
       <div class="item" v-for="(item, k) in recommendList" :key="k">
         <router-link :to="recommendType.link + item._id"  class="a-img">
-          <rentImg :url="item.image" :alt="item.title" />
+          <rentImg class="img-object" :url="item.image" :alt="item.title" />
         </router-link>
         <router-link to="/" tag="strong">{{ item.title }}</router-link>
         <!-- <p>2-5室 / 96-116㎡</p> -->
@@ -25,19 +25,28 @@
       <i v-if="fromErr.email">请输入您的邮箱地址</i>
       <p><span :class="{check: fromInfo.protocol}" @click="protocolClick"></span> 已阅读并同意<router-link to="/">《新加坡看公寓网用户协议》</router-link></p>
       <i class="protocol-err" v-if="fromErr.protocol">请勾选《新加坡看公寓网用户协议》</i>
-      <button @click="submitInfo">立即咨询</button>
+      <button @click="submitInfo">
+        <template v-if="submitLoad">...</template>
+        <template v-else>立即咨询</template>
+      </button>
     </div>
+    <SubmitSuccess v-if="submitStatus" @close="submitStatus = false" />
+
   </div>
 </template>
 <script>
+import SubmitSuccess from '../base/SubmitSuccess'
 import Consultant from '../base/Consultant'
 export default {
   components: {
-    Consultant
+    Consultant,
+    SubmitSuccess
   },
   data () {
     return {
       recommendList: [],
+      submitStatus: false,
+      submitLoad: false,
       fromInfo: {
         message: '',
         name: '',
@@ -96,7 +105,25 @@ export default {
           this.fromErr[info] = false
         }
       }
-      console.log(this.fromInfo, 'fromInfo')
+
+      const params = {
+        message: this.fromInfo.message,
+        name: this.fromInfo.name,
+        tel: this.fromInfo.tel,
+        email: this.fromInfo.email,
+        protocol: this.fromInfo.protocol
+      }
+      if (this.submitLoad) return
+      this.submitLoad = true
+      this.$httpApi.messageApi(params).then(res => {
+        if (res.code === 200) {
+          this.submitLoad = false
+          this.submitStatus = true
+          for (const info in this.fromInfo) {
+            this.fromInfo[info] = ''
+          }
+        }
+      })
     }
   },
   mounted () {
@@ -134,6 +161,11 @@ export default {
       display: inline-block;
       width: 150px;
       margin-right: 15px;
+      .a-img {
+        display: block;
+        width: 150px;
+        height: 84px;
+      }
       strong {
         display: block;
         padding-top: 10px;

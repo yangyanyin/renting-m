@@ -1,34 +1,23 @@
 <template>
   <div class="owner">
-    <BreadcrumbList :breadcrumb="breadcrumb" />
-    <div class="owner-banner w1200px">
-      <img src="../../assets/image/owner-banner.jpg" alt="我是业主" />
+    <div class="owner-banner">
+      <rentImg class="img-object" :url="require('../../assets/image/owner-banner.jpg')" :alt="tabType" />
     </div>
-    <div class="w1200px content clearfix">
-      <div class="left">
-        <div class="tab">
-          <button @click="changeType('委托出租')" :class="{active: tabType === '委托出租'}">委托出租</button>
-          <button @click="changeType('委托卖房')" :class="{active: tabType === '委托卖房'}">委托卖房</button>
-        </div>
-        <FormSubmit :tabType="tabType" />
+    <div class="content">
+      <div class="tab">
+        <button @click="changeType('委托出租')" :class="{active: tabType === '委托出租'}">委托出租</button>
+        <button @click="changeType('委托卖房')" :class="{active: tabType === '委托卖房'}">委托卖房</button>
       </div>
-      <div class="right">
-        <Consultant />
-      </div>
+      <FormSubmit :tabType="tabType" />
     </div>
     <Process></Process>
-
   </div>
 </template>
 <script>
-import BreadcrumbList from '../../components/base/BreadcrumbList'
-import Consultant from '../../components/base/Consultant'
 import FormSubmit from './base/FormSubmit'
 import Process from './base/Process'
 export default {
   components: {
-    BreadcrumbList,
-    Consultant,
     FormSubmit,
     Process
   },
@@ -52,27 +41,23 @@ export default {
 </script>
 <style scoped lang="less">
 .owner {
+  padding: 15px;
   .owner-banner {
-    padding-top: 20px;
+    height: 100px;
   }
   .content {
-    .left {
-      width: 710px;
-      margin-top: 40px;
-    }
-    .right {
-      width: 444px;
-    }
     .tab {
+      padding: 18px 0 25px;
+      text-align: center;
       button {
         display: inline-block;
         position: relative;
-        margin-right: 50px;
+        margin: 0 30px;
         padding: 0 0 7px 30px;
-        font-size: 20px;
+        font-size: 16px;
         background: none;
-        border-bottom: 3px solid #fff;
-        cursor: pointer;
+        font-weight: bold;
+        border-bottom: 2px solid #fff;
         &.active {
           border-color: #24A10F;
           color: #24A10F;
@@ -84,9 +69,9 @@ export default {
           content: '';
           position: absolute;
           left: 0;
-          top: 5px;
-          width: 18px;
-          height: 18px;
+          top: 3px;
+          width: 16px;
+          height: 16px;
           background: #C9C9C9;
           border-radius: 50%;
         }
@@ -94,10 +79,10 @@ export default {
           content: '';
           position: absolute;
           z-index: 1;
-          left: 4px;
-          top: 10px;
-          width: 9px;
-          height: 4px;
+          left: 3px;
+          top: 8px;
+          width: 8px;
+          height: 3px;
           border-bottom: 1px solid #fff;
           border-left: 1px solid #fff;
           transform: rotate(-45deg);

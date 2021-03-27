@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h3 class="other-title">关于我们</h3>
     <div class="img">
       <img src="../../assets/image/other/about-img1.png" />
       <span>ERA 集团管理层合影</span>
@@ -23,18 +22,17 @@
 </template>
 <style scoped lang="less">
 .img {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   text-align: center;
   span {
     display: block;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 16px;
+    opacity: .7;
   }
 }
 p {
   margin-bottom: 20px;
-  padding: 0 70px;
   line-height: 20px;
-  font-size: 12px;
 }
 </style>

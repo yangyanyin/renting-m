@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <router-link :to="routerLink + item._id" class="a-img">
-      <rentImg :url="item.image" :alt="item.title" />
+      <rentImg class="img-object" :url="item.image" :alt="item.title" />
     </router-link>
     <router-link :to="routerLink + item._id" tag="h3">{{ item.title }}</router-link>
     <p class="type">
@@ -40,7 +40,7 @@ export default {
 .item {
   padding: 0 11px;
   margin-top: 15px;
-  height: 113px;
+  height: 90px;
 
   .price {
     font-size: 18px;
@@ -53,6 +53,7 @@ export default {
   .a-img {
     float: left;
     width: 150px;
+    height: 90px;
     margin-right: 10px;
     overflow: hidden;
     border-radius: 3px;
@@ -61,7 +62,7 @@ export default {
     font-size: 14px;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     /* autoprefixer: off */
     -webkit-box-orient: vertical;
     /* autoprefixer: no */

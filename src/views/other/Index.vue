@@ -1,61 +1,29 @@
 <template>
   <div class="other">
-    <BreadcrumbList :breadcrumb="breadcrumb" />
-    <div class="clearfix w1200px mt40">
-      <div class="left menu">
-        <router-link to="/about">关于我们</router-link>
-        <router-link to="/contact-us">联系我们</router-link>
-        <router-link to="/copyright">版权声明</router-link>
-      </div>
-      <div class="right content">
-        <router-view></router-view>
-      </div>
+    <div class="menu">
+      <router-link to="/about">公司介绍</router-link>
+      <router-link to="/contact-us">联系我们</router-link>
+      <router-link to="/copyright">版权声明</router-link>
+    </div>
+    <div class="content">
+      <router-view></router-view>
     </div>
   </div>
 </template>
 <script>
-import BreadcrumbList from '../../components/base/BreadcrumbList'
-export default {
-  components: {
-    BreadcrumbList
-  },
-  computed: {
-    breadcrumb () {
-      const data = {
-        about: {
-          name: '关于我们',
-          url: '/about'
-        },
-        'contact-us': {
-          name: '联系我们',
-          url: '/contact-us'
-        },
-        copyright: {
-          name: '版权声明',
-          url: '/copyright'
-        }
-      }
-      return [data[this.$route.name]]
-    }
-  }
-}
+export default {}
 </script>
 <style scoped lang="less">
 .menu {
-  width: 260px;
-  padding: 5px 0 32px;
-  border: 1px solid #F5F5F5;
+  text-align: center;
   a {
-    display: block;
-    height: 20px;
-    margin-top: 25px;
-    padding-left: 30px;
+    display: inline-block;
+    height: 50px;
+    margin: 0 15px;
+    line-height: 50px;
     font-size: 16px;
-    line-height: 20px;
-    border-left: 4px solid #fff;
-    &:hover {
-      color: #24A10F;
-    }
+    border-bottom: 3px solid #fff;
+    font-weight: bold;
     &.router-link-active {
       color: #24A10F;
       border-color: #24A10F;
@@ -63,8 +31,7 @@ export default {
   }
 }
 .content {
-  width: 910px;
-  padding: 30px;
+  padding: 15px;
   background: #F5F5F5;
 }
 </style>

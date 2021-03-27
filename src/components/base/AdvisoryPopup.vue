@@ -3,10 +3,11 @@
     <div class="content">
       <h3>咨询方向</h3>
       <div class="close" @click="closePopup"></div>
-      <div class="type">
-        <span v-for="(name, k) in typeList" :key="k" @click="selectType(name)" :class="{active: name === fromInfo.advisoryType}">{{ name }}</span>
-      </div>
-      <i v-if="fromError.advisoryType">请选择咨询方向。</i>
+
+      <select v-model="fromInfo.advisoryType">
+        <option v-for="(name, k) in typeList" :key="k" > {{name}} </option>
+      </select>
+
       <p>留下您的联系方式，我们会及时对您的问题进行一对一的解答！</p>
       <input type="text" v-model="fromInfo.advisoryName" placeholder="您的称呼（必填）" />
       <i v-if="fromError.advisoryName">请输入您的称呼。</i>
@@ -16,12 +17,21 @@
 
       <input type="text" v-model="fromInfo.advisoryEmail" placeholder="您的邮箱地址（必填）" />
       <i v-if="fromError.advisoryEmail">请输入您的邮箱地址。</i>
-      <button @click="submitForm">确定</button>
+      <button @click="submitForm">
+        <template v-if="submitLoad">...</template>
+        <template v-else>确定</template>
+      </button>
     </div>
+    <SubmitSuccess v-if="submitStatus" @close="submitStatus = false" />
+
   </div>
 </template>
 <script>
+import SubmitSuccess from '../base/SubmitSuccess'
 export default {
+  components: {
+    SubmitSuccess
+  },
   data () {
     return {
       typeList: [
@@ -44,7 +54,9 @@ export default {
         advisoryName: '',
         advisoryContact: '',
         advisoryEmail: ''
-      }
+      },
+      submitStatus: false,
+      submitLoad: false
     }
   },
   methods: {
@@ -63,7 +75,23 @@ export default {
           this.fromError[info] = false
         }
       }
-      console.log(this.fromInfo, 'fromInfo')
+      const params = {
+        advisory_type: this.fromInfo.advisoryType,
+        name: this.fromInfo.name,
+        contact: this.fromInfo.contact,
+        email: this.fromInfo.advisoryEmail
+      }
+      if (this.submitLoad) return
+      this.submitLoad = true
+      this.$httpApi.messageApi(params).then(res => {
+        if (res.code === 200) {
+          this.submitLoad = false
+          this.submitStatus = true
+          for (const info in this.fromInfo) {
+            this.fromInfo[info] = ''
+          }
+        }
+      })
     }
   }
 }
@@ -79,73 +107,39 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   .content {
     position: absolute;
-    left: 50%;
+    left: 15px;
+    right: 15px;
     top: 50%;
-    width: 640px;
-    padding: 50px 90px 60px;
-    margin-left: -320px;
+    padding: 30px 30px 40px;
     background: #fff;
     border-radius: 5px;
     transform: translateY(-50%);
     h3 {
       position: relative;
       padding: 0 0 15px 18px;
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: bold;
       &:after {
         content: '';
         position: absolute;
         left: 0;
         top: 4px;
         width: 4px;
-        height: 20px;
+        height: 18px;
         background: #24A10F;
       }
     }
-    span {
-      position: relative;
-      display: inline-block;
-      width: 25%;
-      margin-top: 12px;
-      padding-left: 23px;
-      font-size: 12px;
-      color: #1C1C1C;
-      cursor: pointer;
-      &:hover {
-        color: #24A10F;
-      }
-      &.active {
-        color: #24A10F;
-        &:after {
-          border-color: #24A10F;
-          background: #24A10F;
-        }
-        &:before {
-          content: '';
-          position: absolute;
-          z-index: 1;
-          left: 3px;
-          top: 5px;
-          width: 7px;
-          height: 3px;
-          border-left: 1px solid #ffffff;
-          border-bottom: 1px solid #ffffff;
-          transform: rotate(-45deg);
-        }
-      }
-      &:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 1px;
-        width: 12px;
-        height: 12px;
-        border: 1px solid #1C1C1C;
-        border-radius: 5px;
-      }
-    }
+  }
+  select {
+    width: 100%;
+    height: 46px;
+    padding: 0 15px;
+    border-radius: 5px;
+    border: 1px solid #C9C9C9;
   }
   p {
-    margin: 25px 0;
+    text-align: center;
+    margin: 20px 17px;
     color: #24A10F;
   }
   i {
@@ -159,30 +153,30 @@ export default {
   input {
     display: block;
     width: 100%;
-    height: 50px;
+    height: 46;
     margin-bottom: 15px;
     padding: 0 15px;
-    line-height: 48px;
+    line-height: 44px;
     border: 1px solid #C9C9C9;
     border-radius: 5px;
   }
   button {
     display: block;
     width: 100%;
-    height: 60px;
+    height: 50px;
     margin-top: 5px;
     font-size: 16px;
-    line-height: 60px;
+    line-height: 50px;
     color: #fff;
     background: #24A10F;
     border-radius: 5px;
   }
   .close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 30px;
-    height: 30px;
+    top: 10px;
+    right: 10px;
+    width: 26px;
+    height: 26px;
     cursor: pointer;
     &:hover {
       &::after,&::before {
@@ -194,8 +188,8 @@ export default {
       position: absolute;
       left: 14px;
       top: 2px;
-      width: 3px;
-      height: 26px;
+      width: 2px;
+      height: 22px;
       background: #24A10F;
       transition: .3s;
       transform: rotate(-45deg);
@@ -205,8 +199,8 @@ export default {
       position: absolute;
       left: 14px;
       top: 2px;
-      width: 3px;
-      height: 26px;
+      width: 2px;
+      height: 22px;
       background: #24A10F;
       transition: .3s;
       transform: rotate(45deg);

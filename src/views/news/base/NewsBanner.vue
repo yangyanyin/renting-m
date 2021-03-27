@@ -4,7 +4,7 @@
       <div class="item" v-for="(item, k) in newsBanner" :key="k">
         <router-link :to="'/n/d/' + item.id">
           <h3>{{ item.title }}</h3>
-          <img :src="item.img" :alt="item.title">
+          <rentImg class="img-object" :url="item.img" :alt="item.title" />
         </router-link>
       </div>
     </VueSlickCarousel>
@@ -43,7 +43,10 @@
   .slick-slide {
     float: none !important;
     display: inline-block !important;
-    height: 190px;
+    a {
+      display: block;
+      height: 200px;
+    }
   }
   .item {
     position: relative;

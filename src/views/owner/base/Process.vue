@@ -1,5 +1,5 @@
 <template>
-  <div class="process mt80 w1200px">
+  <div class="process">
     <h3><i>发布房源全流程</i></h3>
     <ul>
       <li>
@@ -36,7 +36,6 @@
 <style scoped lang="less">
 .process {
   h3 {
-    font-size: 16px;
     position: relative;
     text-align: center;
     &:after {
@@ -52,20 +51,22 @@
       display: inline-block;
       position: relative;
       z-index: 1;
+      font-weight: bold;
       padding: 0 25px;
       background: #fff;
-      color: #7C7C7C;
     }
   }
   ul {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 60px;
+    padding-top: 20px;
     li {
+      display: block;
       position: relative;
-      width: 25%;
+      margin-bottom: 10px;
+      padding: 3px 13px;
       color: #797979;
       font-size: 13px;
+      border-radius: 5px;
+      background: #F5F5F5;
       div {
         position: absolute;
         left: 90px;
@@ -74,11 +75,12 @@
       }
       span {
         display: block;
-        font-size: 17px;
+        padding-bottom: 5px;
         color: #1C1C1C;
+        font-weight: bold;
       }
       img {
-        width: 80px;
+        width: 50px;
       }
     }
     
