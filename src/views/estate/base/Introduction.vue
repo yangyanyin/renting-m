@@ -1,7 +1,7 @@
 <template>
-  <div class="introduction mt80 w1200px">
+  <div class="introduction">
     <h3>
-      <img :src="introduction.image" :alt="introduction.title" />
+      <img class="img-object" :src="introduction.image" :alt="introduction.title" />
       <i>{{ introduction.title }}</i>
     </h3>
     <p>{{ introduction.des }}</p>
@@ -16,23 +16,24 @@ export default {
 </script>
 <style lang="less" scoped>
 .introduction {
+  padding: 15px;
   text-align: center;
   h3 {
     position: relative;
+    height: 120px;
     i {
       position: absolute;
       width: 100%;
       top: 50%;
       left: 0;
-      font-size: 28px;
+      font-size: 16px;
       color: #fff;
       transform: translateY(-50%);
     }
   }
   p {
-    margin-top: 30px;
-    font-size: 18px;
-    line-height: 34px;
+    margin-top: 20px;
+    line-height: 26px;
   }
 }
 </style>

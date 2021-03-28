@@ -1,7 +1,7 @@
 <template>
-  <div class="item left">
+  <div class="item">
     <router-link :to="`/estate/${type}/${item._id}`" class="a-img">
-      <rentImg :url="item.image" :alt="item.title" />
+      <rentImg class="img-object" :url="item.image" :alt="item.title" />
     </router-link>
     <router-link :to="`/estate/${type}/${item._id}`" tag="strong">{{item.title}}</router-link>
     <p>{{item.addr}}</p>
@@ -22,38 +22,22 @@ export default {
 </script>
 <style lang="less" scoped>
 .item {
-  width: 386px;
-  margin: 30px 20px 0 0;
+  margin-bottom: 25px;
   text-align: center;
-  &:nth-child(3n+1) {
-    margin-right: 0;
-  }
   .a-img {
     display: block;
+    height: 200px;
     border-radius: 5px;
     overflow: hidden;
-    img {
-      transition: .3s;
-    }
   }
   strong {
     display: block;
-    font-size: 20px;
-    padding: 20px 0 10px;
-    transition: .3s;
-    cursor: pointer;
-    &:hover {
-      color: #24A10F;
-    }
+    font-size: 16px;
+    padding: 15px 0 5px;
   }
   p {
-    font-size: 14px;
+    font-size: 12px;
     color: #7C7C7C;
-  }
-  &:hover {
-    .a-img img {
-      transform: scale(1.2);
-    }
   }
 }
 </style>

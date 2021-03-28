@@ -23,7 +23,7 @@ export default {
       if (this.$route.name === 'second hand') {
         return '万'
       }
-      return ''
+      return '/月'
     },
     routerLink () {
       const routes = {

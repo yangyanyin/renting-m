@@ -15,7 +15,6 @@
       参考价:<span> {{infoBase.rent_price}} </span>
       <button @click="showAdvisory">租赁</button>
     </div>
-
     <AdvisoryPopup v-if="showAdvisoryType" @closePopuo="showAdvisory" />
   </div>
 </template>
@@ -44,9 +43,9 @@ export default {
 </script>
 <style lang="less" scoped>
 .info-base {
+  padding-top: 25px;
    p {
-    margin-bottom: 22px;
-    font-size: 16px;
+    margin-bottom: 10px;
     color: #737373;
     &.traffic {
       i {
@@ -55,14 +54,14 @@ export default {
     }
     i {
       display: inline-block;
-      margin-left: 10px;
+      margin-left: 7px;
       color: #1C1C1C;
     }
   }
   .price {
     padding: 15px;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 14px;
     border: 1px solid #C9C9C9;
     &:last-child {
       border-top: none;
@@ -72,7 +71,7 @@ export default {
     }
     button {
       float: right;
-      width: 128px;
+      width: 110px;
       line-height: 40px;
       text-align: center;
       color: #fff;

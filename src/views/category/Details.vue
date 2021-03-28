@@ -8,11 +8,17 @@
         <h3>{{ proTitle }}</h3>
         <span v-for="(name, k) in houseTags" :key="name + k">{{ name }}</span>
       </div>
-      <DetailsInfoBase :infoBase="infoBase" />
-      <DetalsIntroduction :introduction="introduction" />
-      <DetailsPhoto :photoAll="photoAll" />
-      <DetailsDetailed :projectDetails="projectDetails" />
-      <DetailsUnitType :houseTypes="houseTypes" />
+      <DetailsInfoBase :infoBase="infoBase" :type="breadcrumb[0].name" />
+      <template v-if="breadcrumb[0].name !== '狮城租房'">
+        <DetalsIntroduction :introduction="introduction" />
+        <DetailsPhoto :photoAll="photoAll" />
+        <DetailsDetailed :projectDetails="projectDetails" />
+        <DetailsUnitType :houseTypes="houseTypes" />
+      </template>
+      <template v-else>
+        <DetailsHousingInfo />
+        <DetailsHousingDescribe />
+      </template>
       <BaiduMap v-show="false" :addr="infoBase.addr" />
       <DetailsRecommend />
     </div>
@@ -25,6 +31,8 @@ import DetailsPhoto from './base/DetailsPhoto'
 import DetailsDetailed from './base/DetailsDetailed'
 import DetailsUnitType from './base/DetailsUnitType'
 import DetailsInfoBase from './base/DetailsInfoBase'
+import DetailsHousingInfo from './base/DetailsHousingInfo'
+import DetailsHousingDescribe from './base/DetailsHousingDescribe'
 import DetailsRecommend from '../../components/details/DetailsRecommend'
 import BaiduMap from '../../components/details/BaiduMap'
 import Loading from '../../components/base/Loading'
@@ -38,6 +46,8 @@ export default {
     DetailsUnitType,
     DetalsIntroduction,
     DetailsInfoBase,
+    DetailsHousingInfo,
+    DetailsHousingDescribe,
     DetailsRecommend,
     BaiduMap,
     Loading
@@ -67,7 +77,8 @@ export default {
         },
         'renting': {
           url: '/c/renting',
-          name: '狮城租房'
+          name: '狮城租房',
+          api: 'rented_house'
         },
         'second-hand': {
           url: '/c/second-hand',
@@ -93,7 +104,7 @@ export default {
       if (res.code === 200) {
         const detailInfo = res.data.new_house || res.data.second_hand_house
         this.proTitle = detailInfo.title
-        this.proBigImages = detailInfo.effect_images
+        this.proBigImages = detailInfo.effect_images || detailInfo.images
         this.introduction = detailInfo.description
         this.houseTypes = detailInfo.house_types
         this.houseTags = detailInfo.house_tags
@@ -107,7 +118,10 @@ export default {
           traffic_tips: detailInfo.traffic_tips,
           price: detailInfo.price,
           addr: detailInfo.addr,
-          house_types: detailInfo.house_types
+          house_type: detailInfo.house_type,
+          house_types: detailInfo.house_types,
+          rent_type: detailInfo.rent_type,
+          floor: detailInfo.floor
         }
 
         this.photoAll = {

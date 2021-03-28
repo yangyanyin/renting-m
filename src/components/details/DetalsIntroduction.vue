@@ -1,13 +1,19 @@
 <template>
   <div class="introduction">
-    <h3 class="other-t">房源介绍</h3>
+    <h3 class="other-t">{{ title }}</h3>
     <p>{{ introduction }}</p>
   </div>
 </template>
 <script>
 export default {
   props: {
-    introduction: String
+    introduction: String,
+    title: {
+      type: String,
+      default () {
+        return '房源介绍'
+      }
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="business">
     <Introduction v-for="(item, k) in introductionData" :key="k" :introduction="item" />
-    <div class="advantage w1200px mt80">
+    <div class="advantage mt40">
       <h3>投资商业地产的优势</h3>
       <ul class="clearfix">
         <li>
@@ -56,28 +56,30 @@ export default {
 .advantage {
   text-align: center;
   h3 {
-    font-size: 24px;
+    font-size: 16px;
     color: #24A10F;
+    font-weight: bold;
   }
   ul {
-    padding-top: 50px;
+    padding: 15px 10px;
     li {
       float: left;
-      width: 224px;
-      height: 307px;
-      margin-right: 20px;
-      padding: 0 30px;
+      width: calc(50% - 10px);
+      height: 210px;
+      margin: 5px 5px;
+      padding: 0 15px;
       border: 1px solid #D6D6D6;
       border-radius: 10px;
       &:last-child {
         margin-right: 0;
       }
       p {
-        line-height: 24px;
+        line-height: 22px;
+        font-size: 12px;
       }
       img {
-        width: 120px;
-        margin: 40px auto;
+        width: 70px;
+        margin: 20px auto;
       }
     }
   }

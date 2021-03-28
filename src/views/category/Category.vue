@@ -5,7 +5,7 @@
 
     <Loading v-if="total <= 0"/>
     <template v-else>
-      <Filters v-if="flase" />
+      <!-- <Filters /> -->
       <ProductList :productData="productData" :total="total" />
       <Loading v-if="pageLoading" />
     </template>
@@ -13,14 +13,14 @@
 </template>
 <script>
 import SearchBox from './base/SearchBox'
-import Filters from './base/Filters'
+// import Filters from './base/Filters'
 import ProductList from './base/ProductList'
 import Loading from '../../components/base/Loading'
 export default {
   name: 'category',
   components: {
     SearchBox,
-    Filters,
+    // Filters,
     ProductList,
     Loading
   },
@@ -43,7 +43,8 @@ export default {
         },
         'renting': {
           url: '/c/renting',
-          name: '狮城租房'
+          name: '狮城租房',
+          api: 'rented_house'
         },
         'second hand': {
           url: '/c/second-hand',
@@ -66,7 +67,7 @@ export default {
         this.pageLoading = true
         this.$httpApi.categoryListApi(params).then(res => {
           if (res.code === 200) {
-            const data = res.data.new_houses || res.data.second_hand_houses
+            const data = res.data.new_houses || res.data.second_hand_houses || res.data.rented_houses
             this.page++
             this.productData = this.productData.concat(data)
             this.total = res.data.total

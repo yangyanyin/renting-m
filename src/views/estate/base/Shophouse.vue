@@ -1,6 +1,5 @@
 <template>
-  <div class="building w1200px mt80 clearfix">
-    <h3>保留性店屋</h3>
+  <div class="shop-house">
     <Loading v-if="shophouseData.length === 0" />
     <template v-if="shophouseData.length > 0">
       <ProductItem  v-for="(item, k) in shophouseData" :item="item" :key="k" type="shophouse" />
@@ -30,11 +29,8 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
-.building {
-  h3 {
-    font-size: 28px;
-    color: #19191D;
-  }
+<style scoped lang="less">
+.shop-house {
+  padding: 15px 10px;
 }
 </style>
