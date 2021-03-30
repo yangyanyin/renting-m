@@ -31,9 +31,9 @@
     </div>
     
     <div class="input-box">
-      <span>期望售价</span>
-      <input type="text" placeholder="请输入您想卖出的价格" v-model="fromInfo.sellingPrice" />
-      <em v-if="fromErr.sellingPrice">请输入您想卖出的价格</em>
+      <span>{{tabType === '委托卖房' ? '期望售价' : '期望租金'}}</span>
+      <input type="text" :placeholder="tabType === '委托卖房' ? '请输入您的期望售价' : '请输入您的期望租金'" v-model="fromInfo.sellingPrice" />
+      <em v-if="fromErr.sellingPrice">{{tabType === '委托卖房' ? '请输入您的期望售价' : '请输入您的期望租金'}} </em>
     </div>
     <div class="evaluation">
       <span @click="AdvisoryPopup = true">或者咨询专业经纪人，做免费估价</span>

@@ -121,6 +121,17 @@ select:focus,select:active,select:hover{
   margin-top: 40px;
 }
 
+.popup-animat {
+  animation: popupTop .3s both;
+}
+@keyframes popupTop {
+  100% {
+    top: 50%;
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
 .no-scroll {
   position: fixed;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="advisory-pop">
-    <div class="content">
+    <div class="content popup-animat">
       <h3>咨询方向</h3>
       <div class="close" @click="closePopup"></div>
 
@@ -113,12 +113,13 @@ export default {
     padding: 30px 30px 40px;
     background: #fff;
     border-radius: 5px;
-    transform: translateY(-50%);
+    transform: translateY(-20%);
     h3 {
       position: relative;
       padding: 0 0 15px 18px;
       font-size: 18px;
       font-weight: bold;
+      text-align: left;
       &:after {
         content: '';
         position: absolute;

@@ -1,6 +1,6 @@
 <template>
   <div class="success">
-    <div class="content">
+    <div class="content popup-animat">
       <div class="close" @click="closeSuccess"></div>
       <div class="t">
         <h3>递交成功</h3>
@@ -39,7 +39,7 @@ export default {
     right: 15px;
     background: #fff;
     border-radius: 5px;
-    transform: translateY(-50%);
+    transform: translateY(-20%);
     text-align: center;
     overflow: hidden;
     .close {

@@ -1,8 +1,13 @@
 <template>
-  <div class="return-top" @click="backTop"></div>
+  <div class="return-top" v-if="showTopBtn" @click="backTop"></div>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      showTopBtn: false
+    }
+  },
   methods: {
     backTop () {
       let scrTop = 0
@@ -18,6 +23,15 @@ export default {
         document.documentElement.scrollTop = scrTop - iSpeed
       }, 8)
     }
+  },
+   mounted () {
+    window.addEventListener('scroll', () => {
+      if (document.body.scrollTop || document.documentElement.scrollTop > 600) {
+        this.showTopBtn = true
+      } else {
+        this.showTopBtn = false
+      }
+    })
   }
 }
 </script>
