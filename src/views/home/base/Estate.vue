@@ -36,6 +36,7 @@ export default {
     display: inline-block;
     text-align: center;
     margin-right: 10px;
+    width: 220px;
     .a-img {
       display: block;
       border-radius: 5px;
@@ -46,6 +47,10 @@ export default {
     h3 {
       font-size: 16px;
       padding: 15px 0 5px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
     p {
       font-size: 12px;

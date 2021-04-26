@@ -6,11 +6,11 @@
         <DetailsViewImg :imagesArr="imagesAll" :vrLink="vrLink" />
         <div class="title">
           <h3>{{ proTitle }}</h3>
-          <p>{{ proAddress }}</p>
+          <p><img src="../../assets/image/addr-icon.png" /> {{ proAddress }}</p>
         </div>
         <DetailsInfoBase :infoBase="infoBase" />
         <DetalsIntroduction :introduction="introduction" title="项目介绍" />
-        <Conveniences />
+        <Conveniences :facilities="facilities" />
         <Consultant />
       </div>
       <BaiduMap class="content mt80" :addr="infoBase.addr" />
@@ -43,7 +43,8 @@ export default {
       imagesAll: [],
       infoBase: {},
       introduction: '',
-      vrLink: ''
+      vrLink: '',
+      facilities: []
     }
   },
   computed: {
@@ -79,6 +80,7 @@ export default {
         this.imagesAll = detailInfo.images
         this.introduction = detailInfo.description
         this.vrLink = detailInfo.vr_link
+        this.facilities = detailInfo.facilities
         this.infoBase = {
           floor: detailInfo.floor,
           deed: detailInfo.deed,
@@ -88,7 +90,8 @@ export default {
           addr: detailInfo.addr,
           traffic: detailInfo.traffic,
           price: detailInfo.price,
-          rent_price: detailInfo.rent_price
+          rent_price: detailInfo.rent_price,
+          area: detailInfo.area
         }
       }
     })
@@ -110,6 +113,13 @@ export default {
       margin-top: 10px;
       color: #C9C9C9;
       font-size: 12px;
+      img {
+        display: inline-block;
+        position: relative;
+        top: -1px;
+        width: 12px;
+        margin-right: 6px;
+      }
     }
   }
 }

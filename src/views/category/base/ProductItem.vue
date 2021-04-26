@@ -5,7 +5,13 @@
     </router-link>
     <router-link :to="routerLink + item._id" tag="h3">{{ item.title }}</router-link>
     <p class="type">
-      <i v-for="(item, k) in item.house_types" :key="k" v-show="k < 3">{{ item.type }} / {{ item.area }}</i>
+      <!-- <i v-for="(item, k) in item.house_types[0]" :key="k">{{ item.type }} / {{ item.area }}</i> -->
+      <template v-if="type === 'renting'">
+        <i>{{ item.house_model[0] }}  {{ item.area}}</i>
+      </template>
+      <template v-else>
+        <i >{{ item.house_types[0].type }} / {{ item.house_types[0].area }}</i>
+      </template>
     </p>
     <div class="price"> {{ item.price }} <i>{{ priceType }}</i></div>
   </div>
@@ -32,8 +38,12 @@ export default {
         'second hand': '/c/second-hand/'
       }
       return [routes[this.$route.name]]
+    },
+    type () {
+      return this.$route.name
     }
   }
+  
 }
 </script>
 <style scoped lang="less">

@@ -17,7 +17,7 @@
     </template>
     <p class="traffic">
       交通：
-      <span v-for="(name, k) in infoBase.traffic" :key="k">{{ name }}</span>
+      <span v-for="(item, k) in infoBase.traffic" :key="k" :style="{background: item.color}">{{ item.name }}</span>
       <i>{{ infoBase.traffic_tips }}</i>
     </p>
     <div v-if="houseTypes" class="rule clearfix">
@@ -105,7 +105,7 @@ export default {
     &.traffic {
       span {
         display: inline-block;
-        margin-right: 15px;
+        margin: 0 15px 10px 0;
         padding: 0 10px;
         line-height: 24px;
         background: #E12129;

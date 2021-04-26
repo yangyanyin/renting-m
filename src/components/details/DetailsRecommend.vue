@@ -173,7 +173,7 @@ export default {
         line-height: 18px;
         overflow: hidden;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
         /* autoprefixer: off */
         -webkit-box-orient: vertical;
         /* autoprefixer: no */

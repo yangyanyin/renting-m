@@ -7,7 +7,7 @@
           <rentImg class="img-object" :url="item.image" :alt="item.title" />
         </router-link>
         <router-link :to="`${housesType.url}/${item._id}`" tag="h3"> {{item.title}} </router-link>
-        <p v-if="item.house_types"> {{item.house_types[0].type}} / {{item.house_types[0].area}} </p>
+        <p v-if="item.house_types && item.house_types.length > 0"> {{item.house_types[0].type}} / {{item.house_types[0].area}} </p>
         <span class="price"> {{item.price}} <i>{{housesType.unit}}</i></span>
       </div>
     </div>
@@ -69,7 +69,11 @@ export default {
     }
     h3 {
       font-size: 14px;
-      padding: 10px 0 8px;
+      margin: 10px 0 8px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
     p {
       font-size: 12px;

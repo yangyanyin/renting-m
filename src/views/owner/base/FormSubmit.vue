@@ -111,7 +111,7 @@ export default {
       }
       
       const params = {
-        entrust_type: this.tabType,
+        type: this.tabType,
         property_location: this.fromInfo.position,
         address_type: this.housesType,
         address: this.fromInfo.address,

@@ -1,7 +1,7 @@
 <template>
   <div class="introduction">
     <h3 class="other-t">{{ title }}</h3>
-    <p>{{ introduction }}</p>
+    <p v-html="introduction"></p>
   </div>
 </template>
 <script>

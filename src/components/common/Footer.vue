@@ -13,7 +13,7 @@
         </ul> -->
         <div class="ewm">
           <span>
-            <i><img src="../../assets/image/wx1.png" alt="扫码关注公众号" /></i>
+            <i><img src="../../assets/image/wx2.png" alt="扫码关注公众号" /></i>
             扫码关注公众号
           </span>
           <span>
