@@ -1,6 +1,6 @@
 <template>
   <div class="breadcrumb-list">
-    <div class="w1200px">
+    <div>
       <router-link to="/">首页</router-link>
       <template v-for="(item, k) in breadcrumb">
         <router-link v-if="item && item.url && item.name" :key="k" :to="item.url">{{ item.name }}</router-link>

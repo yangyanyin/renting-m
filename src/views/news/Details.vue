@@ -6,12 +6,12 @@
         <h3>{{ newsData.title }}</h3>
         <p>发布时间：{{ newsData.created_at.split(' ')[0] }}    阅读次数：{{ newsData.read_count }}次</p>
       </div>
-      <div class="new-html" v-html="newsData.content"></div>
+      <div class="new-html" v-html="newsContent"></div>
       <div class="context">
-        <p v-if="prevNews.title">上一篇：<router-link :to="'/n/d/' + prevNews.id ">{{prevNews.title}}</router-link></p>
-        <p v-if="nextNews.title">下一篇：<router-link :to="'/n/d/' + nextNews.id ">{{nextNews.title}}</router-link></p>
+        <p v-if="prevNews.title">上一篇：<router-link :to="`/n/${newsType}/${prevNews.id}`">{{prevNews.title}}</router-link></p>
+        <p v-if="nextNews.title">下一篇：<router-link :to="`/n/${newsType}/${nextNews.id}`">{{nextNews.title}}</router-link></p>
       </div>
-      <DetailsRecommend />
+      <DetailsRecommend :proTitle="newsData.title" />
     </template>
   </div>
 </template>
@@ -29,7 +29,9 @@ export default {
       newsData: {},
       prevNews: {},
       nextNews: {},
-      recommendNews: []
+      newsContent: '',
+      recommendNews: [],
+      newsType: this.$route.params.name
     }
   },
   mounted () {
@@ -39,6 +41,7 @@ export default {
     this.$httpApi.newsDetailsApi(params).then(res => {
       if (res.code === 200) {
         this.newsData = res.data.news
+        this.newsContent = res.data.news.content.replace(/\/images\/default/g, 'http://web.aicassets.com/images/default/')
         this.prevNews = res.data.prev_news || {}
         this.nextNews = res.data.next_news || {}
       }

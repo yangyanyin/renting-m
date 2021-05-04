@@ -42,6 +42,9 @@ export default {
     Consultant,
     SubmitSuccess
   },
+  props: {
+    proTitle: String
+  },
   data () {
     return {
       recommendList: [],
@@ -107,6 +110,8 @@ export default {
       }
 
       const params = {
+        email_title: '房产咨询',
+        advisory_source: this.proTitle,
         message: this.fromInfo.message,
         name: this.fromInfo.name,
         tel: this.fromInfo.tel,

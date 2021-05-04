@@ -10,10 +10,10 @@
     <template v-if="newsList.length > 0">
       <NewsBanner :newsBanner="bannerNewsList" />
       <div class="list">
-        <h3>{{ newsId.name }}</h3>
-        <NewsItem v-for="(item, k) in newsList" :item="item" :key="k" />
+        <h3>{{ newsName }}</h3>
+        <NewsItem v-for="(item, k) in newsList" :cUrl="itemUrl" :item="item" :key="k" />
       </div>
-      <DetailsRecommend />
+      <DetailsRecommend :proTitle="newsName" />
     </template>
   </div>
 </template>
@@ -58,35 +58,22 @@ export default {
         },
       ],
       newsList: false,
-      bannerNewsList: []
-    }
-  },
-  computed: {
-    newsId () {
-      const id = {
-        'must-see': {
-          id: 1,
-          name: '买房必看'
-        },
-        'property': {
-          id: 3,
-          name: '产权交易'
-        },
-        'faq': {
-          id: 4,
-          name: '常见问题'
-        },
-        'guide': {
-          id: 5,
-          name: '购房指南'
-        }
-      }
-      return id[this.$route.params.name] || {}
+      bannerNewsList: [],
+      newsName: '',
+      itemUrl: ''
     }
   },
   mounted () {
+    let newId = ''
+    this.newsMenu.map(item => {
+      if (item.url.indexOf(this.$route.params.name) >= 0) {
+        newId = item.id
+        this.newsName = item.name
+        this.itemUrl = item.url
+      }
+    })
     const params = {
-      category_id: this.newsId.id
+      category_id: newId
     }
     this.$httpApi.newsListApi(params).then(res => {
       if (res.code === 200) {

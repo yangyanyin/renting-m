@@ -2,7 +2,7 @@
   <div class="info-base">
     <div class="price">
       {{infoBase.price}}<i>{{priceType}}</i>
-      <a>变价提醒</a>
+      <a @click="showAdvisory">变价提醒</a>
     </div>
      <template v-if="type === '狮城租房'">
       <p>租凭方式：<i>{{ infoBase.rent_type }}</i></p>
@@ -10,7 +10,7 @@
       <p>楼层：<i>{{ infoBase.floor }}</i></p>
     </template>
     <template v-else>
-      <p>地区位置：<i>{{ infoBase.location }}</i></p>
+      <p>地区位置：<i>{{ infoBase.region }}</i></p>
       <p>建筑面积：<i>{{ infoBase.area }}</i></p>
       <p>预计落成日期：<i>{{ infoBase.completion_date }}</i></p>
       <p>房产地址：<i>{{ infoBase.addr }}</i></p>
@@ -26,13 +26,26 @@
         <li :class="{p: name === '售价'}" v-for="(item, i) in types" :key="i">{{ item }}</li>
       </ul>
     </div>
+
+    <AdvisoryPopup v-if="showAdvisoryType" :proTitle="proTitle" :type="messageType" page="product_details" @closePopuo="showAdvisory" />
   </div>
 </template>
 <script>
+import AdvisoryPopup from '../../../components/base/AdvisoryPopup'
 export default {
+  components: {
+    AdvisoryPopup
+  },
   props: {
     infoBase: Object,
-    type: String
+    type: String,
+    proTitle: String,
+    messageType: String
+  },
+  data () {
+    return {
+      showAdvisoryType: false
+    }
   },
   computed: {
     houseTypes () {
@@ -60,7 +73,12 @@ export default {
         return '万'
       }
       return '/月'
-    },
+    }
+  },
+  methods: {
+    showAdvisory () {
+      this.showAdvisoryType = !this.showAdvisoryType
+    }
   }
 }
 </script>

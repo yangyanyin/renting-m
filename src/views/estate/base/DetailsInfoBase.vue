@@ -15,7 +15,7 @@
     <p class="traffic">靠近地铁站：
       <i v-for="(item, k) in infoBase.traffic" :key="k" :style="{background: item.color}"> {{item.name}} </i>
     </p>
-    <div class="price">
+    <div class="price" v-if="infoBase.price">
       参考价: <span> {{infoBase.price}} </span>
       <button @click="showAdvisory" >购买</button>
     </div>
@@ -23,7 +23,7 @@
       参考价:<span> {{infoBase.rent_price}} </span>
       <button @click="showAdvisory">租赁</button>
     </div>
-    <AdvisoryPopup v-if="showAdvisoryType" @closePopuo="showAdvisory" />
+    <AdvisoryPopup v-if="showAdvisoryType" type="商业地产买卖" page="estate" :proTitle="proTitle" @closePopuo="showAdvisory" />
   </div>
 </template>
 
@@ -35,7 +35,8 @@ export default {
     AdvisoryPopup
   },
   props: {
-    infoBase: Object
+    infoBase: Object,
+    proTitle: String
   },
   data () {
     return {

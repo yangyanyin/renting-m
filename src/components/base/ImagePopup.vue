@@ -1,19 +1,42 @@
 <template>
   <div class="big-img">
     <div class="content">
+      <VueSlickCarousel v-bind="settings" >
+        <img class="img-object" v-for="(item, k) in bigImgArr" :key="k" :src="item" alt="">
+      </VueSlickCarousel>
       <span class="close" @click="closeBigImg('')"></span>
-      <img :src="bigImgUrl" alt="" />
     </div>
   </div>
 </template>
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
+  components: {
+    VueSlickCarousel
+  },
   props: {
-    bigImgUrl: String
+    bigImgArr: Array,
+    imgIndex: Number,
+    type: String
+  },
+  data () {
+    return {
+      settings: {
+        accessibility: false,
+        dots: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: this.imgIndex,
+        adaptiveHeight: true
+      }
+    }
   },
   methods: {
     closeBigImg () {
-      this.$emit('closeBigImg', '')
+      this.$emit('closeBigImg', -1)
     }
   }
 }
@@ -26,12 +49,11 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 10px;
   background:rgba(0, 0, 0, 0.6);
   .close {
     position: absolute;
-    right: -5px;
-    top: -15px;
+    right: 0;
+    top: -35px;
     width: 30px;
     height: 30px;
     border: 1px solid #ddd;
@@ -60,19 +82,36 @@ export default {
       border-radius: 1px;
       transform: rotate(-45deg) scale(.5);
     }
+    &:hover {
+      &:before, &:after {
+        background: #24A10F;
+      }
+    }
   }
   .content {
     position: absolute;
     z-index: 9;
-    top: 50%;
     left: 10px;
     right: 10px;
+    top: 50%;
     height: auto;
-    max-height: 90%;
+    max-height: 600px;
     background: #fff;
-    padding: 5px;
+    padding: 2px;
     border-radius: 3px;
     transform: translateY(-50%);
+  }
+}
+</style>
+<style lang="less">
+.big-img {
+  .slick-prev {
+    z-index: 99;
+    left: 5px;
+  }
+  .slick-next {
+    z-index: 99;
+    right: 5px;
   }
 }
 </style>

@@ -37,7 +37,11 @@ export default {
         'renting': '/c/renting/',
         'second hand': '/c/second-hand/'
       }
-      return [routes[this.$route.name]]
+      if (this.$route.params.search) {
+        return routes[this.$route.params.search.replace('-', ' ')] || {}
+      } else {
+        return [routes[this.$route.name]]
+      }
     },
     type () {
       return this.$route.name

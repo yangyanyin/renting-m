@@ -2,28 +2,20 @@
   <div class="photo">
     <h3 class="other-t">房源相册</h3>
     <div class="list">
-      <strong>效果图</strong>
-      <div class="image-all">
-        <span v-for="(img, k) in photoAll.effect_picture" :key="k">
-          <img class="img-object" :src="img" @click="viewBigImg(img)" />
-        </span>
-      </div>
 
-      <strong>样板间</strong>
-      <div class="image-all">
-        <span v-for="(img, k) in photoAll.sample_room" :key="k">
-          <img class="img-object" :src="img" @click="viewBigImg(img)" />
-        </span>
-      </div>
-
-      <strong>周边配套</strong>
-      <div class="image-all">
-        <span v-for="(img, k) in photoAll.matching" :key="k">
-          <img class="img-object" :src="img" @click="viewBigImg(img)" />
-        </span>
-      </div>
+      <template v-for="(item, name, k) in imgSet">
+        <template v-if="item && item.length > 0">
+          <strong :key="k">{{name}}</strong>
+          <div class="image-all" :key="'p' + k">
+            <span v-for="(img, i) in item" :key="i">
+              <rentImg class="img-object" :url="img" @click.native="viewBigImg(i, item)"/>
+            </span>
+          </div>
+          <!-- <HousePhoto :key="'p' + k" @viewBigImg="viewBigImg" :imagesArr="item" /> -->
+        </template>
+      </template>
     </div>
-    <ImagePopup :bigImgUrl="bigImgUrl" @closeBigImg="viewBigImg" v-if="bigImgUrl" />
+    <ImagePopup :bigImgArr="bigImgArr" :imgIndex="imgIndex" @closeBigImg="viewBigImg" v-if="bigImgArr" />
   </div>
 </template>
 <script>
@@ -37,12 +29,18 @@ export default {
   },
   data () {
     return {
-      bigImgUrl: ''
+      bigImgArr: '',
+      imgSet: {
+        效果图: this.photoAll.effect_picture,
+        样板间: this.photoAll.sample_room,
+        周边配套: this.photoAll.matching
+      }
     }
   },
   methods: {
-    viewBigImg (url) {
-      this.bigImgUrl = url
+    viewBigImg (k, imgArr) {
+      this.imgIndex = k
+      this.bigImgArr = imgArr
     }
   }
 }
@@ -63,6 +61,7 @@ export default {
     width: 230px;
     height: 125px;
     margin-right: 20px;
+    border: 1px solid #ddd;
     &:last-child {
       margin-right: 0;
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="home-new-house">
     <Title title="新加坡最新房产资讯" />
-    <router-link class="news-a" :to="'/n/d/' + item.id" v-for="(item, k) in newsList" :key="k">
+    <router-link class="news-a" :to="'/n/must-see/' + item.id" v-for="(item, k) in newsList" :key="k">
       <img :src="item.img" :alt="item.title" />
       <h3>{{ item.title }}</h3>
       <p>{{ item.description }}</p>

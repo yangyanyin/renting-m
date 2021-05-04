@@ -5,7 +5,7 @@
       <p>{{ buyHouseAdvisory.des }}</p>
       <router-link :to="buyHouseAdvisory.more" @click.native="btnClick(buyHouseAdvisory.more)">{{buyHouseAdvisory.btn}}</router-link>
     </div>
-    <AdvisoryPopup v-if="showAdvisoryType" @closePopuo="btnClick('/')" />
+    <AdvisoryPopup v-if="showAdvisoryType" page="home" @closePopuo="btnClick('/')" />
   </div>
 </template>
 <script>

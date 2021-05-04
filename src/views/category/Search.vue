@@ -1,7 +1,6 @@
 <!-- 新楼盘 -->
 <template>
   <div class="search">
-    <BreadcrumbList :breadcrumb="breadcrumb" />
     <SearchBox />
     <Loading v-if="total < 0 || pageLoading"/>
     <ProductList v-else :productData="productData" :total="total" :categoryLink="breadcrumb[0] ? breadcrumb[1].url : ''" />
@@ -9,7 +8,6 @@
   </div>
 </template>
 <script>
-import BreadcrumbList from '../../components/base/BreadcrumbList'
 import SearchBox from './base/SearchBox'
 import ProductList from './base/ProductList'
 import Pagination from '../../components/base/Pagination'
@@ -17,7 +15,6 @@ import Loading from '../../components/base/Loading'
 export default {
   name: 'search',
   components: {
-    BreadcrumbList,
     SearchBox,
     ProductList,
     Pagination,

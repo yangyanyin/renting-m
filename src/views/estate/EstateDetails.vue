@@ -8,12 +8,12 @@
           <h3>{{ proTitle }}</h3>
           <p><img src="../../assets/image/addr-icon.png" /> {{ proAddress }}</p>
         </div>
-        <DetailsInfoBase :infoBase="infoBase" />
+        <DetailsInfoBase :infoBase="infoBase" :proTitle="proTitle" />
         <DetalsIntroduction :introduction="introduction" title="项目介绍" />
         <Conveniences :facilities="facilities" />
         <Consultant />
       </div>
-      <BaiduMap class="content mt80" :addr="infoBase.addr" />
+      <BaiduMap v-if="coordinate" :coordinate="coordinate" :addr="infoBase.addr" :title="proTitle" :mapData="mapData"  />
     </template>
   </div>
 </template>
@@ -44,7 +44,9 @@ export default {
       infoBase: {},
       introduction: '',
       vrLink: '',
-      facilities: []
+      facilities: [],
+      coordinate: '',
+      mapData: ''
     }
   },
   computed: {
@@ -80,6 +82,8 @@ export default {
         this.imagesAll = detailInfo.images
         this.introduction = detailInfo.description
         this.vrLink = detailInfo.vr_link
+        this.coordinate = detailInfo.coordinate
+        this.mapData = detailInfo.map
         this.facilities = detailInfo.facilities
         this.infoBase = {
           floor: detailInfo.floor,

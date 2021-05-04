@@ -3,7 +3,7 @@
     <h3 class="other-t">户型介绍</h3>
     <div class="item" v-for="(item, k) in houseTypes" :key="k">
       <i class="a-img">
-        <rentImg class="img-object" :url="item.image" :alt="item.type" @click.native="viewBigImg(item.image)" />
+        <rentImg class="img-object" :url="item.image" :alt="item.type" @click.native="viewBigImg(k)" />
       </i>
       <i tag="h3">{{ item.type }}</i>
       <p>参考均价：<i>{{ item.average_price }}</i>/㎡</p>
@@ -13,7 +13,7 @@
     <button>房贷计算</button>
     <strong>免责声明</strong>
     <em>页面所载楼盘内容及数据仅供用户参考和借鉴，最终以开发商实际公示为准，如楼盘信息有误或其他疑义，可进行纠错。</em>
-    <ImagePopup :bigImgUrl="bigImgUrl" @closeBigImg="viewBigImg" v-if="bigImgUrl" />
+    <ImagePopup :bigImgArr="bigImgArr" :imgIndex="imgIndex" @closeBigImg="viewBigImg" v-if="bigImgArr" />
   </div>
 </template>
 <script>
@@ -27,12 +27,23 @@ export default {
   },
   data () {
     return {
-      bigImgUrl: ''
+      bigImgArr: '',
+      imgIndex: ''
     }
   },
   methods: {
-    viewBigImg (url) {
-      this.bigImgUrl = url
+    viewBigImg (index) {
+      console.log(index >= 0)
+      if (index >= 0) {
+        const img = []
+        this.houseTypes.map(item => {
+          img.push(item.image)
+        })
+        this.bigImgArr = img
+      } else {
+        this.bigImgArr = ''
+      }
+      this.imgIndex = index
     }
   }
 }

@@ -1,120 +1,82 @@
 <template>
   <div class="baidu-map">
-    <div class="map-tab">
+    <h3>地理位置及周边配套</h3>
+    
+    <BaiduMap class="bm-view" 
+      ak="zvCUylrKijIObDFg2VP01XFjYMWgmlMw"
+      :zoom="19"
+      :center="coordinateCenter"
+      :scroll-wheel-zoom="true"
+      :show="true"
+      @ready="ready">
+      <bm-info-window :position="coordinateCenter" :title="title" :show="infoWindow.show" @close="infoWindowClose" @open="infoWindowOpen">
+        <p v-text="infoWindow.contents"></p>
+      </bm-info-window>
+      <bm-local-search :keyword="keyword" :auto-viewport="true" ></bm-local-search>
+    </BaiduMap>
+    <div class="map-tab" v-if="mapSurrounding.status > 0">
       <div class="tab">
-        <span v-for="(item, t, k) in surrounding"
-          :class="{active: surroundingIndex === k}"
+        <span v-for="(item, t, k) in mapSurrounding.map" :class="{active: surroundingIndex === k}"
           :key="k" 
           @click="tabClick(k)">{{ t }}</span>
       </div>
       <div class="sc">
-        <template v-for="(item, t, k) in surrounding">
+        <template v-for="(item, t, k) in mapSurrounding.map">
           <ul :key="k" v-if="surroundingIndex === k">
             <li v-for="(info, i) in item" :key="i" @click="mapClick(info.name)">
               <strong>{{ info.name }}</strong>
-              <p>{{ info.description }}</p>
-              <i>{{ info.distance }}</i>
+              <p>{{ info.desc }}</p>
             </li>
           </ul>
         </template>
       </div>
     </div> 
-    <BaiduMap class="bm-view" 
-      ak="zvCUylrKijIObDFg2VP01XFjYMWgmlMw"
-      :zoom="10"
-      :scroll-wheel-zoom="true"
-      :show="true"
-      @ready="ready">
-      <bm-control>
-      </bm-control>
-      <bm-local-search :keyword="keyword" :auto-viewport="true" ></bm-local-search>
-    </BaiduMap>
   </div>
 </template>
 <script>
-// import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
-// import { BaiduMap, BmControl, BmView, BmAutoComplete, BmLocalSearch, BmMarker, BmGeolocation } from 'vue-baidu-map'
-import { BaiduMap, BmLocalSearch, BmControl  } from 'vue-baidu-map'
+import { BaiduMap, BmLocalSearch, BmInfoWindow } from 'vue-baidu-map'
 export default {
   components: {
     BaiduMap,
     BmLocalSearch,
-    BmControl
-    
+    BmInfoWindow
   },
   props: {
+    coordinate: String,
+    mapData: Object,
+    title: String,
     addr: String
   },
   data () {
     return {
-      zoom: 10,
-      keyword: '慕达发购物中心',
+      keyword: '',
       infoWindow: {
-        show: true
+        show: true,
+        contents: '地址：' + this.addr
       },
-      surroundingIndex: 0,
-      surrounding: {
-        '交通': [
-          {
-            name: '新加坡百丽宫',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: 'Oleander Twsr Oleander Twsr ',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: 'Oleander Twsr',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: 'Oleander Twsr',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: 'Oleander Twsr',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: 'Oleander Twsr',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: 'Oleander Twsr',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: 'Oleander Twsr',
-            distance: '相距123米',
-            description: '48;141;234'
-          }
-        ],
-        '教育': [
-          {
-            name: '学校',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: '学校',
-            distance: '相距123米',
-            description: '48;141;234'
-          },
-          {
-            name: '学校',
-            distance: '相距123米',
-            description: '48;141;234'
-          }
-        ],
-        '医院': [],
-        '购物': []
+      surroundingIndex: 0
+    }
+  },
+  computed: {
+    coordinateCenter () {
+      return {
+        lng: this.coordinate ? this.coordinate.split(',')[0] : '',
+        lat: this.coordinate ? this.coordinate.split(',')[1] : ''
+      }
+    },
+    mapSurrounding () {
+      let data = {}
+      let status = 0
+      const mapData =  this.mapData
+      for (let key in mapData) {
+        if (mapData[key].length >0) {
+          data[key] = mapData[key]
+          status = 1
+        }
+      }
+      return {
+        status: status,
+        map: data
       }
     }
   },
@@ -128,6 +90,12 @@ export default {
     },
     mapClick (name) {
       this.keyword = name
+    },
+    infoWindowClose () {
+      this.infoWindow.show = false
+    },
+    infoWindowOpen () {
+      this.infoWindow.show = true
     }
   }
 }
@@ -135,39 +103,47 @@ export default {
 <style lang="less">
 .baidu-map {
   position: relative;
+  margin: 40px -15px 0;
+  .BMap_bubble_title {
+    color: #cc5522;
+    font: bold 14px/16px arial,sans-serif;
+  }
+  h3 {
+    padding: 0 15px;
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
   .map-tab {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 999;
-    background: #fff;
+    padding: 10px;
     .tab {
-      height: 32px;
-      line-height: 30px;
-      background: #dadada;
       span {
         display: inline-block;
-        padding: 0 10px;
-        border-top: 2px solid #dadada;
+        position: relative;
+        padding: 10px 15px;
         cursor: pointer;
         &.active {
           color: #427ff6;
-          border-top: 2px solid #427ff6;
-          background: #fff;
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -5px;
+            width: 10px;
+            height: 2px;
+            background: #427ff6;
+          }
         }
       }
     }
-    .sc {
-      height: 300px;
-      overflow-y: auto;
-    }
     ul {
-      padding: 20px;
+      padding: 10px;
       font-weight: normal;
       li {
         position: relative;
-        margin-top: 20px;
-        cursor: pointer;
+        margin-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
         &:first-child {
           margin-top: 0;
         }
@@ -177,7 +153,7 @@ export default {
           font-weight: normal;
         }
         p {
-          color: #aaafb8;
+          color: #d8d8d8;
           font-size: 12px;
         }
         i {
@@ -193,7 +169,7 @@ export default {
 }
 .bm-view {
   width: 100%;
-  height: 500px;
+  height: 250px;
   > div {
     &:last-child {
       display: none;

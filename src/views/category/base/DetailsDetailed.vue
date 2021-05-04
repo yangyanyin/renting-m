@@ -27,7 +27,7 @@ export default {
 .detailed {
   ul {
     li {
-      margin-top: 25px;
+      margin-top: 15px;
       &:last-child {
         width: 100%;
         div {

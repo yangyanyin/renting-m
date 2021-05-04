@@ -81,9 +81,10 @@ export default {
         }
       }
       const params = {
+        email_title: '',
         type: this.fromInfo.advisoryType,
-        name: this.fromInfo.name,
-        contact: this.fromInfo.contact,
+        name: this.fromInfo.advisoryName,
+        contact: this.fromInfo.advisoryContact,
         email: this.fromInfo.advisoryEmail
       }
       if (this.page === 'home') {
@@ -93,17 +94,27 @@ export default {
         params.email_title = '新楼盘咨询'
         params.advisory_source = this.proTitle
       }
+      if (this.page === 'estate') {
+        params.email_title = '商业地产咨询'
+        params.advisory_source = this.proTitle
+      }
       if (this.submitLoad) return
-      this.submitLoad = true
-      this.$httpApi.messageApi(params).then(res => {
-        if (res.code === 200) {
-          this.submitLoad = false
-          this.submitStatus = true
-          for (const info in this.fromInfo) {
-            this.fromInfo[info] = ''
-          }
-        }
-      })
+      console.log(params, 'params')
+      // this.submitLoad = true
+      // this.$httpApi.messageApi(params).then(res => {
+      //   if (res.code === 200) {
+      //     this.submitLoad = false
+      //     this.submitStatus = true
+      //     for (const info in this.fromInfo) {
+      //       this.fromInfo[info] = ''
+      //     }
+      //   }
+      // })
+    }
+  },
+  mounted () {
+    if (this.type) {
+      this.selectType (this.type)
     }
   }
 }

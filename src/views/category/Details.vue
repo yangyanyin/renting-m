@@ -8,7 +8,7 @@
         <h3>{{ proTitle }}</h3>
         <span v-for="(name, k) in houseTags" :key="name + k">{{ name }}</span>
       </div>
-      <DetailsInfoBase :infoBase="infoBase" :type="breadcrumb[0].name" />
+      <DetailsInfoBase :infoBase="infoBase" :messageType="breadcrumb[0].message_type" :type="breadcrumb[0].name" :proTitle="proTitle" />
       <template v-if="breadcrumb[0].name !== '狮城租房'">
         <DetalsIntroduction :introduction="introduction" />
         <DetailsPhoto :photoAll="photoAll" />
@@ -19,8 +19,9 @@
         <DetailsHousingInfo />
         <DetailsHousingDescribe />
       </template>
-      <BaiduMap v-show="false" :addr="infoBase.addr" />
-      <DetailsRecommend />
+      <BaiduMap v-if="coordinate" :coordinate="coordinate" :addr="infoBase.addr" :title="proTitle" :mapData="mapData"  />
+      <!-- <BaiduMap v-show="false" :addr="infoBase.addr" /> -->
+      <DetailsRecommend :proTitle="proTitle" />
     </div>
   </div>
 </template>
@@ -63,8 +64,9 @@ export default {
       houseTypes: '',     // 户型
       houseTags: [],      // 楼盘标签
       titleTags: [],      // 标题标签
-      vrLink: ''          // VR 看房链接
-
+      vrLink: '',         // VR 看房链接
+      coordinate: '',
+      mapData: ''
     }
   },
   computed: {
@@ -73,17 +75,20 @@ export default {
         'new-house': {
           url: '/c/new-house',
           name: '新楼盘',
-          api: 'new_house'
+          api: 'new_house',
+          message_type: '购买新楼盘'
         },
         'renting': {
           url: '/c/renting',
           name: '狮城租房',
-          api: 'rented_house'
+          api: 'rented_house',
+          message_type: '租房'
         },
         'second-hand': {
           url: '/c/second-hand',
           name: '二手公寓',
-          api: 'second_hand_house'
+          api: 'second_hand_house',
+          message_type: '二手公寓'
         }
       }
       return [
@@ -110,8 +115,10 @@ export default {
         this.houseTags = detailInfo.house_tags
         this.titleTags = detailInfo.title_tags
         this.vrLink = detailInfo.vr_link
+        this.mapData = detailInfo.map
+        this.coordinate = detailInfo.coordinate
         this.infoBase = {
-          location: detailInfo.location,
+          region: detailInfo.region_ch ? detailInfo.region_ch[0] : '',
           area: detailInfo.area,
           completion_date: detailInfo.finish_at,
           traffic: detailInfo.traffic,

@@ -59,7 +59,7 @@
       点击递交之后，房源核验、确认信息无误，我们将与您联系，签订服务合同，新加坡看公寓网仅提供免费房产信息展示和网络技术服务。
     </p>
     <SubmitSuccess v-if="submitStatus" @close="submitStatus = false" />
-    <AdvisoryPopup v-if="AdvisoryPopup" @closePopuo="AdvisoryPopup = false" />
+    <AdvisoryPopup v-if="AdvisoryPopup" type="其他" @closePopuo="AdvisoryPopup = false" />
   </div>
 </template>
 <script>
