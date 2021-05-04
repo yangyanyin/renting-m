@@ -10,17 +10,20 @@
       <p>参考总价：<i> {{ item.price }} </i>/套</p>
       <span>{{ item.area }}</span>
     </div>
-    <button>房贷计算</button>
+    <button @click="clickMortgage">房贷计算</button>
     <strong>免责声明</strong>
     <em>页面所载楼盘内容及数据仅供用户参考和借鉴，最终以开发商实际公示为准，如楼盘信息有误或其他疑义，可进行纠错。</em>
     <ImagePopup :bigImgArr="bigImgArr" :imgIndex="imgIndex" @closeBigImg="viewBigImg" v-if="bigImgArr" />
+    <DetailsMortgage v-if="showMortgage" @closeMortgage="showMortgage = false" />
   </div>
 </template>
 <script>
+import DetailsMortgage from '../../category/base/DetailsMortgage'
 import ImagePopup from '../../../components/base/ImagePopup'
 export default {
   components: {
-    ImagePopup
+    ImagePopup,
+    DetailsMortgage
   },
   props: {
     houseTypes: Array
@@ -28,7 +31,8 @@ export default {
   data () {
     return {
       bigImgArr: '',
-      imgIndex: ''
+      imgIndex: '',
+      showMortgage: false
     }
   },
   methods: {
@@ -44,6 +48,9 @@ export default {
         this.bigImgArr = ''
       }
       this.imgIndex = index
+    },
+    clickMortgage () {
+      this.showMortgage = true
     }
   }
 }

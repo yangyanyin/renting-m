@@ -6,13 +6,7 @@
         {{ item.name }}
       </router-link>
     </div>
-
-    <div class="home-mortgage" v-if="showMortgage">
-      <div class="b">
-        <div class="close" @click="showMortgage = false"></div>
-        <DetailsMortgage />
-      </div>
-    </div>
+    <DetailsMortgage v-if="showMortgage" @closeMortgage="showMortgage = false" />
   </div>
 </template>
 <script>
