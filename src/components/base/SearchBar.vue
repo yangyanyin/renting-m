@@ -48,6 +48,7 @@ export default {
     left: 0;
     top: 50%;
     width: 80px;
+    padding: 0 17px;
     text-align: center;
     text-align-last: center;
     border: none;
