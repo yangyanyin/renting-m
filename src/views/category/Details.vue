@@ -16,11 +16,15 @@
         <DetailsUnitType :houseTypes="houseTypes" />
       </template>
       <template v-else>
-        <DetailsHousingInfo />
-        <DetailsHousingDescribe />
+        <DetailsHousingInfo :infoBase="infoBase" />
+        <DetailsHousingDescribe 
+          :facilities="surroundingFacilities"
+          :community="community"
+          :introduction="introduction"
+          :payType="payType"
+          :price="infoBase.price" />
       </template>
       <BaiduMap v-if="coordinate" :coordinate="coordinate" :addr="infoBase.addr" :title="proTitle" :mapData="mapData"  />
-      <!-- <BaiduMap v-show="false" :addr="infoBase.addr" /> -->
       <DetailsRecommend :proTitle="proTitle" />
     </div>
   </div>
@@ -66,7 +70,10 @@ export default {
       titleTags: [],      // 标题标签
       vrLink: '',         // VR 看房链接
       coordinate: '',
-      mapData: ''
+      mapData: '',
+      surroundingFacilities: '',
+      community: '',
+      payType: ''
     }
   },
   computed: {
@@ -117,6 +124,9 @@ export default {
         this.vrLink = detailInfo.vr_link
         this.mapData = detailInfo.map
         this.coordinate = detailInfo.coordinate
+        this.surroundingFacilities = detailInfo.surrounding_facilities
+        this.community = detailInfo.community
+        this.payType = detailInfo.pay_type
         this.infoBase = {
           region: detailInfo.region_ch ? detailInfo.region_ch[0] : '',
           area: detailInfo.area,
@@ -128,7 +138,8 @@ export default {
           house_type: detailInfo.house_type,
           house_types: detailInfo.house_types,
           rent_type: detailInfo.rent_type,
-          floor: detailInfo.floor
+          floor: detailInfo.floor,
+          facilities: detailInfo.facilities
         }
 
         this.photoAll = {
