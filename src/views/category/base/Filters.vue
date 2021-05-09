@@ -11,7 +11,10 @@
     <div class="down-list" v-if="typeTitle">
       <div class="bg" @click="typeClick('')"></div>
       <div class="content">
-        <span :class="{active: filterClickItem[typeTitle].length <= 0}">全部</span> 
+        <span :class="{active: filterClickItem[typeTitle].length <= 0}"
+          @click="filterClick(typeTitle, 'all')">
+          全部
+        </span> 
         <span
           v-for="(item, k) in filterData[typeTitle]" :key="k"
           :class="{active: filterClickItem[typeTitle] && filterClickItem[typeTitle].indexOf(item.id) >= 0}"
@@ -238,6 +241,10 @@ export default {
       this.typeTitle = type
     },
     filterClick (type, id) {
+      if (id === 'all') {
+        this.filterClickItem[type] = []
+        return
+      }
       if (this.filterClickItem[type] && this.filterClickItem[type].indexOf(id) >= 0) {
         this.filterClickItem[type].splice(this.filterClickItem[type].indexOf(id), 1)
       } else {
@@ -249,6 +256,7 @@ export default {
       for (const item in this.filterClickItem) {
         link[item] = this.filterClickItem[item].join(',')
       }
+      this.typeTitle = ''
       this.$router.push({
         query: link
       })

@@ -14,7 +14,8 @@ export default {
   },
   computed: {
     curRouterLink () {
-      return this.$route.fullPath
+      const now = Date.now()
+      return this.$route.fullPath + now
     }
   }
 }

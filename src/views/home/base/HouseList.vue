@@ -68,8 +68,9 @@ export default {
       height: 100px;
     }
     h3 {
+      height: 20px;
+      margin: 7px 0 3px;
       font-size: 14px;
-      margin: 10px 0 8px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 1;
@@ -81,7 +82,7 @@ export default {
     }
     span {
       display: block;
-      margin-top: 10px;
+      margin-top: 4px;
       color: #BF3F3F;
       font-size: 20px;
       i {
