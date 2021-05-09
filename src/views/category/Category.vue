@@ -5,7 +5,7 @@
 
     <Loading v-if="total <= 0"/>
     <template v-else>
-      <!-- <Filters /> -->
+      <Filters :category="breadcrumb[0].name" />
       <ProductList :productData="productData" :total="total" />
       <Loading v-if="pageLoading" />
     </template>
@@ -13,14 +13,14 @@
 </template>
 <script>
 import SearchBox from './base/SearchBox'
-// import Filters from './base/Filters'
+import Filters from './base/Filters'
 import ProductList from './base/ProductList'
 import Loading from '../../components/base/Loading'
 export default {
   name: 'category',
   components: {
     SearchBox,
-    // Filters,
+    Filters,
     ProductList,
     Loading
   },
@@ -59,8 +59,16 @@ export default {
     getProductList () {
       if (this.onMore) {
         this.onMore = false
+        const region = this.$route.query.region
+        const house = this.$route.query.house
+        const price = this.$route.query.price
+        const area = this.$route.query.area
         const params = {
           page: this.page,
+          price_index: price,
+          area_index: area,
+          house_index: house,
+          region_index: region,
           size: 10,
           api_url: this.breadcrumb[0].api
         }
