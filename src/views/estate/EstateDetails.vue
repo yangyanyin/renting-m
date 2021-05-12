@@ -79,7 +79,7 @@ export default {
         const detailInfo = res.data
         this.proTitle = detailInfo.title
         this.proAddress = detailInfo.addr
-        this.imagesAll = detailInfo.images
+        this.imagesAll = detailInfo.images || []
         this.introduction = detailInfo.description
         this.vrLink = detailInfo.vr_link
         this.coordinate = detailInfo.coordinate
