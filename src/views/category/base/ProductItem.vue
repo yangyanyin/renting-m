@@ -14,6 +14,10 @@
       </template>
     </p>
     <div class="price"> {{ item.price }} <i>{{ priceType }}</i></div>
+    <a class="vr" :href="item.vr_link" target="_blank" v-if="item.vr_link">
+      <img src="../../../assets/image/vr_icon.gif">
+      VR看房
+    </a>
   </div>
 </template>
 <script>
@@ -52,16 +56,50 @@ export default {
 </script>
 <style scoped lang="less">
 .item {
+  position: relative;
   padding: 0 11px;
   margin-top: 15px;
   height: 90px;
-
   .price {
     font-size: 18px;
     color: #BF3F3F;
     i {
       display: inline-block;
       font-size: 12px;
+    }
+  }
+  .vr {
+    position: absolute;
+    z-index: 9;
+    left: 15px;
+    bottom: 5px;
+    width: 90px;
+    height: 24px;
+    padding-right: 15px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 3px;
+    opacity: 0.8;
+    font-weight: normal;
+    img {
+      display: inline-block;
+      width: 30px;
+      height: auto;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-right: 1px solid #fff;
+      border-top: 1px solid #fff;
+      transform: rotate(45deg);
+      transition: 0.3s;
     }
   }
   .a-img {

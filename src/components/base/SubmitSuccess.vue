@@ -8,7 +8,7 @@
       </div>
       <div class="c">
         <p>您也可以拨打我们的服务热线，直接与我们取得联系</p>
-        <span>客服热线 <strong>+65 8813 9139</strong> </span>
+        <span>客服热线 <strong>+65 88 139 139</strong> </span>
         <button @click="closeSuccess">确定</button>
       </div>
     </div>

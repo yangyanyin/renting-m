@@ -9,6 +9,10 @@
       <p>参考均价：<i>{{ item.average_price }}</i>/㎡</p>
       <p>参考总价：<i> {{ item.price }} </i>/套</p>
       <span>{{ item.area }}</span>
+      <a class="vr" :href="item.vr_link" target="_blank" v-if="item.vr_link">
+        <img src="../../../assets/image/vr_icon.gif">
+        VR看房
+      </a>
     </div>
     <button @click="clickMortgage">房贷计算</button>
     <strong>免责声明</strong>
@@ -69,6 +73,7 @@ export default {
       width: 120px;
       height: 75px;
       overflow: hidden;
+      border: 1px solid #ddd;
     }
     h3 {
       padding-top: 22px;
@@ -86,9 +91,42 @@ export default {
     span {
       position: absolute;
       right: 0;
-      top: 10px;
-      font-size: 18px;
+      top: 0;
       color: #BF3F3F;
+    }
+    .vr {
+      position: absolute;
+      z-index: 9;
+      left: 5px;
+      bottom: 5px;
+      width: 90px;
+      height: 24px;
+      padding-right: 15px;
+      line-height: 24px;
+      font-size: 12px;
+      color: #fff;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 3px;
+      opacity: 0.8;
+      font-weight: normal;
+      img {
+        display: inline-block;
+        width: 30px;
+        height: auto;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        width: 5px;
+        height: 5px;
+        border-right: 1px solid #fff;
+        border-top: 1px solid #fff;
+        transform: rotate(45deg);
+        transition: 0.3s;
+      }
     }
   }
   button {

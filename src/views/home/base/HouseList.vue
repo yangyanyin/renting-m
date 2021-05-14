@@ -1,14 +1,22 @@
 <template>
   <div class="home-house-list">
-    <Title title="精选优质新房" />
+    <Title :title="housesType.name" />
     <div class="product-list clearfix">
       <div class="item left" v-for="(item, k) in housesData" :key="k">
         <router-link :to="`${housesType.url}/${item._id}`" class="a-img">
           <rentImg class="img-object" :url="item.image" :alt="item.title" />
         </router-link>
         <router-link :to="`${housesType.url}/${item._id}`" tag="h3"> {{item.title}} </router-link>
-        <p v-if="item.house_types && item.house_types.length > 0"> {{item.house_types[0].type}} / {{item.house_types[0].area}} </p>
+        <p> 
+          <template v-if="item.house_types && item.house_types.length > 0">
+            {{item.house_types[0].type}} / {{item.house_types[0].area}} 
+          </template>
+        </p>
         <span class="price"> {{item.price}} <i>{{housesType.unit}}</i></span>
+        <a class="vr" :href="item.vr_link" target="_blank" v-if="item.vr_link">
+          <img src="../../../assets/image/vr_icon.gif">
+          VR看房
+        </a>
       </div>
     </div>
     <router-link :to="housesType.url" class="view-all">查看全部</router-link>
@@ -58,6 +66,7 @@ export default {
 .product-list {
   padding: 0 5px;
   .item {
+    position: relative;
     width: 50%;
     margin-bottom: 20px;
     padding: 0 5px;
@@ -77,6 +86,7 @@ export default {
       -webkit-box-orient: vertical;
     }
     p {
+      height: 17px;
       font-size: 12px;
       color: #7C7C7C;
     }
@@ -87,6 +97,39 @@ export default {
       font-size: 20px;
       i {
         font-size: 14px;
+      }
+    }
+    .vr {
+      position: absolute;
+      z-index: 9;
+      left: 10px;
+      bottom: 85px;
+      width: 90px;
+      height: 24px;
+      padding-right: 15px;
+      line-height: 24px;
+      font-size: 12px;
+      color: #fff;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 3px;
+      opacity: 0.8;
+      img {
+        display: inline-block;
+        width: 30px;
+        height: auto;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        width: 5px;
+        height: 5px;
+        border-right: 1px solid #fff;
+        border-top: 1px solid #fff;
+        transform: rotate(45deg);
+        transition: 0.3s;
       }
     }
   }

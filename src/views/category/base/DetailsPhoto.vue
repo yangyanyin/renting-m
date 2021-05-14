@@ -1,8 +1,7 @@
 <template>
-  <div class="photo">
+  <div class="photo" v-if="isShowPhoto">
     <h3 class="other-t">房源相册</h3>
     <div class="list">
-
       <template v-for="(item, name, k) in imgSet">
         <template v-if="item && item.length > 0">
           <strong :key="k">{{name}}</strong>
@@ -35,6 +34,11 @@ export default {
         样板间: this.photoAll.sample_room,
         周边配套: this.photoAll.matching
       }
+    }
+  },
+  computed: {
+    isShowPhoto () {
+      return this.imgSet['效果图'].length > 0 || this.imgSet['样板间'].length > 0 || this.imgSet['周边配套'].length > 0
     }
   },
   methods: {
