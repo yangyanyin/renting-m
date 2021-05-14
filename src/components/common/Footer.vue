@@ -4,13 +4,6 @@
       <MessagePlate />
       <div class="footer-content">
         <p>新加坡看公寓网是新加坡最全的中文类房产新楼盘信息网，每日更新汇聚全岛最实时的房产信息，开发商直接销售团队，金牌团队专注服务中国客户，服务数百精英满意置业新加坡，是海外华人在新置业的必看网站。</p>
-        <!-- <ul>
-          <li><img src="../../assets/image/whats-icon.png"></li>
-          <li><img src="../../assets/image/weibo-icon.png"></li>
-          <li><img src="../../assets/image/fb-icon.png"></li>
-          <li><img src="../../assets/image/in-icon.png"></li>
-          <li><img src="../../assets/image/wechat-icon.png"></li>
-        </ul> -->
         <div class="ewm">
           <span>
             <i><img src="../../assets/image/wx2.png" alt="扫码关注公众号" /></i>
@@ -76,23 +69,11 @@ export default {
       opacity: .7;
     }
   }
-  ul {
-    display: block;
-    padding: 35px 0;
-    li {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      margin: 0 14px;
-      background: #8c8c8c;
-      border-radius: 100%;
-    }
-  }
   .copyright {
     display: block;
     margin: 20px -50px 0;
     padding-top: 20px;
-    border-top: 1px solid #7C7C7C;
+    border-top: 1px solid #2d2d2d;
     font-size: 12px;
     color: #7C7C7C;
   }
