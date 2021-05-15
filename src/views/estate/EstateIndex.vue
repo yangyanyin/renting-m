@@ -2,7 +2,7 @@
   <div class="estate">
     <div class="banner">
       <div class="btn">
-        <router-link tag="button" to="/estate"> 新加坡商业地产</router-link>
+        <router-link tag="button" to="/estate"> 新加坡商业地产简介</router-link>
         <router-link tag="button" to="/estate/building"> 分层地契商业办公大楼</router-link>
         <router-link tag="button" to="/estate/shophouse"> 保留性店屋</router-link>
       </div>
