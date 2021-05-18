@@ -3,7 +3,7 @@
     <h3 class="other-t">户型介绍</h3>
     <div class="item" v-for="(item, k) in houseTypes" :key="k">
       <i class="a-img">
-        <rentImg class="img-object" :url="item.image" :alt="item.type" @click.native="viewBigImg(k)" />
+        <rentImg class="img-object" :url="item.image" :alt="item.type" @click.native="viewBigImg(k, item.image)" />
       </i>
       <i tag="h3">{{ item.type }}</i>
       <p>参考均价：<i>{{ item.average_price }}</i>/㎡</p>
@@ -40,9 +40,9 @@ export default {
     }
   },
   methods: {
-    viewBigImg (index) {
-      console.log(index >= 0)
+    viewBigImg (index, imgSrc) {
       if (index >= 0) {
+        if (!imgSrc) return
         const img = []
         this.houseTypes.map(item => {
           img.push(item.image)
