@@ -12,7 +12,7 @@ export default {
 </script>
 <style scoped lang="less">
 .nothing {
-  padding: 20px 0;
+  padding: 50px 0;
   font-size: 16px;
   text-align: center;
 

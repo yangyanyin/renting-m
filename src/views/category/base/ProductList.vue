@@ -1,13 +1,18 @@
 <template>
   <div class="product-list">
-    <ProductItem v-for="(item, k) in productData" :key="k" :item="item" />
+    <NoResult text="没有匹配结果！" v-if="total === 0" />
+    <template v-else>
+      <ProductItem v-for="(item, k) in productData" :key="k" :item="item" />
+    </template>
   </div>
 </template>
 <script>
 import ProductItem from './ProductItem'
+import NoResult from '../../../components/base/Nothing'
 export default {
   components: {
-    ProductItem
+    ProductItem,
+    NoResult
   },
   props: {
     productData: Array,
